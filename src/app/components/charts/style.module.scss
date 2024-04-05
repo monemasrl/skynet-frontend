@@ -78,7 +78,7 @@
   }
   &.span_big {
     grid-column: span 10;
-
+    padding: 1rem 1rem 1rem 0rem;
     @media #{$landscape} {
       grid-column: span 2;
       grid-row: 3;

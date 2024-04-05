@@ -24,7 +24,7 @@ function Switcher({
   return (
     <div className={style.boxSwitch}>
       <span>Archivio: </span>
-      <div className={style.switch} data-isOn={isOn} onClick={toggleSwitch}>
+      <div className={style.switch} data-ison={isOn} onClick={toggleSwitch}>
         <motion.div
           className={style.handle}
           layout
