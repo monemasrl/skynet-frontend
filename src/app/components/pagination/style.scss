@@ -1,0 +1,49 @@
+.pagination {
+  margin-top: 2rem;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.2rem;
+  flex-wrap: wrap;
+
+  li {
+    cursor: pointer;
+    display: inline-block;
+    line-height: 15px;
+    border-bottom: 2px solid transparent;
+    &.selected {
+      border-bottom: 2px solid black;
+    }
+  }
+  &__bullets {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    position: relative;
+    li {
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        width: 100%;
+        bottom: -5px;
+        left: 0;
+        height: 2px;
+        background-color: transparent;
+      }
+      &.active {
+        &::after {
+          background-color: black;
+        }
+      }
+    }
+  }
+}
+.previous,
+.next {
+  @media #{$phone} {
+    display: none !important;
+  }
+}

@@ -1,0 +1,25 @@
+.ricerca {
+  margin-left: auto;
+  display: flex;
+  gap: 1rem;
+  max-width: 250px;
+  width: 100%;
+  @media #{$tablet} {
+    max-width: 100%;
+  }
+  input {
+    padding: 10px;
+    margin: 10px 0;
+    border: 0px;
+    border-radius: 4px;
+    background-color: $lightGrey;
+    flex: 1;
+    @media #{$tablet} {
+      width: 90%;
+    }
+    &:active,
+    &:focus {
+      outline: none;
+    }
+  }
+}

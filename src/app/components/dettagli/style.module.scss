@@ -1,0 +1,91 @@
+.dettagli {
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  border-radius: 30px;
+  padding: 40px;
+
+  @media #{$landscape} {
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
+    padding: 0px;
+  }
+  &__boxtitle {
+    overflow: hidden;
+    span {
+      display: block;
+    }
+  }
+  &__col1 {
+    display: inline-block;
+    grid-column: span 2;
+  }
+  &__col2 {
+    display: inline-block;
+    grid-column: span 4;
+  }
+  &__subTitle {
+    line-height: 1;
+    font-size: $size-subtitle;
+  }
+  &__dato {
+    font-size: $size-dettaglio-value;
+    line-height: 1;
+
+    span {
+      font-size: $size-dettaglio-label;
+      display: block;
+      line-height: 1;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+  }
+  &__jobs {
+    display: inline-flex;
+    max-width: 300px;
+    width: 100%;
+    background-color: $lightGrey;
+    padding: 1.5rem;
+    @media #{$large} {
+      max-width: 100%;
+    }
+    ul {
+      width: 100%;
+      li {
+        display: flex;
+        font-size: $size-list-jobs;
+        justify-content: space-between;
+        font-weight: 500;
+        border-bottom: 1px solid $grey;
+        line-height: 2;
+      }
+    }
+  }
+  header {
+    display: flex;
+    justify-content: space-between;
+    height: 65px;
+    border-bottom: 1px solid $grey;
+    margin-bottom: 2rem;
+    align-items: center;
+
+    h2 {
+      margin: 0;
+      line-height: 1;
+    }
+  }
+  main {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 2rem;
+    @media #{$large} {
+      flex-direction: column;
+    }
+    section {
+      max-width: 390px;
+      display: grid;
+      justify-items: start;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-column-gap: 10px;
+      grid-row-gap: 2.5rem;
+    }
+  }
+}

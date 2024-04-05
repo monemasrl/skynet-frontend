@@ -1,0 +1,121 @@
+.lista {
+  &__listaItem {
+    display: grid;
+    grid-template-columns: 100px minmax(100px, 1.5fr) minmax(100px, 1fr) minmax(
+        100px,
+        1fr
+      );
+    column-gap: 10px;
+    row-gap: 15px;
+    justify-items: start;
+    align-items: center;
+    padding: 0.7rem 0.5rem;
+    cursor: pointer;
+    font-size: $size-list;
+    background-color: white;
+    transition: all ease-in-out 0.3s;
+    @media #{$large} {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    @media #{$tablet} {
+      grid-template-columns: 1fr 1fr 1fr 80px;
+    }
+    @media #{$phone} {
+      grid-template-columns: 60px 1fr 1fr 20px;
+      font-size: $size-list/1.2;
+    }
+
+    &__header {
+      font-weight: 500;
+      border-bottom: 1px solid;
+      padding-bottom: 0.5rem;
+      margin-bottom: 0.2rem;
+      cursor: auto;
+      @media #{$phone} {
+        display: none;
+      }
+      &__stato {
+        @media #{$tablet} {
+          text-align: right;
+          width: 100%;
+        }
+      }
+    }
+    &__active {
+      background-color: $lightGrey;
+    }
+  }
+  nav {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 3rem;
+    margin-top: 0.5rem;
+    @media #{$tablet} {
+      margin: 1rem 0;
+    }
+    .subnav {
+      display: flex;
+      align-items: center;
+      max-width: 350px;
+      width: 100%;
+      gap: 2rem;
+    }
+  }
+}
+
+.item-b {
+  grid-column-start: 1;
+  grid-column-end: span 2;
+  grid-row-start: 2;
+  grid-row-end: span 2;
+  justify-self: center;
+  align-self: center;
+}
+.listaNav {
+  header {
+    display: flex;
+    justify-content: space-between;
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+}
+.boxSwitch {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  span {
+    font-size: 0.8rem;
+  }
+}
+.switch {
+  width: 70px;
+  height: 30px;
+  background-color: $lightGrey;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid #e4e4e4;
+  padding: 5px;
+  cursor: pointer;
+}
+
+.switch[data-isOn="true"] {
+  justify-content: flex-end;
+  .handle {
+    background-color: black;
+    color: white;
+  }
+}
+
+.handle {
+  width: 25px;
+  height: 25px;
+  background-color: rgb(228, 228, 228);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

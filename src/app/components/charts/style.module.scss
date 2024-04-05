@@ -1,0 +1,100 @@
+.charts {
+  display: grid;
+  grid-template-columns: repeat(20, 1fr);
+  margin: 3rem 0 0 0;
+  gap: 2rem;
+  @media #{$landscape} {
+    grid-template-columns: 1fr 1fr;
+    grid-row: 2;
+    margin-top: 2rem;
+  }
+  @media #{$phone} {
+    grid-template-columns: 1fr 1fr;
+    grid-row: 3;
+    margin-top: 1rem;
+  }
+  &__icon {
+    position: absolute;
+    right: -1.5rem;
+    top: -1.5rem;
+    font-size: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-end;
+    height: 84px;
+    box-shadow: 0px 0px 3px rgb(180, 180, 180);
+    border-radius: 50%;
+    width: 84px;
+    span {
+      position: relative;
+      left: 18px;
+      top: -5px;
+    }
+  }
+  &__title {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: 500;
+    &__tipoDati {
+      margin-top: 1rem;
+      display: flex;
+      justify-content: center;
+      .title {
+        @media #{$tablet} {
+          display: none;
+        }
+      }
+      span {
+        display: inline-block;
+        cursor: pointer;
+        margin: 0 0.3rem;
+        font-size: $size-dettaglio-label;
+      }
+    }
+  }
+}
+
+.singleChart {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 248px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  transition: all 0.3s ease;
+  &.span_small {
+    grid-column: span 5;
+    @media #{$landscape} {
+      grid-column: span 1;
+    }
+    @media #{$phone} {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+  }
+  &.span_big {
+    grid-column: span 10;
+
+    @media #{$landscape} {
+      grid-column: span 2;
+      grid-row: 3;
+      height: 250px;
+    }
+  }
+  @media #{$landscape} {
+    height: 220px;
+    padding: 0.5rem;
+  }
+  .chart {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.gauge.radial-gauge {
+  width: 100%;
+}

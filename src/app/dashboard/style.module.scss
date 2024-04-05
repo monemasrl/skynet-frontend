@@ -1,0 +1,22 @@
+.main {
+  display: flex;
+  gap: 5rem;
+  margin-top: 3rem;
+  @media #{$landscape} {
+    display: block;
+  }
+
+  &__lista {
+    flex: 0 1 700px;
+    h1 {
+      margin: 0 0 0 0.3rem;
+    }
+  }
+  &__dettagli {
+    flex: 0 1 840px;
+    margin-top: 2rem;
+    @media #{$large} {
+      flex: 0 1 500px;
+    }
+  }
+}
