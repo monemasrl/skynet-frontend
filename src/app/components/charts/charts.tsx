@@ -99,6 +99,7 @@ function Charts() {
             fusman={fusman?.total}
             text="Fusman totali"
             errorFusman={errorFusman}
+            limit={[200, 300, 400]}
           />
         ) : (
           <Loading />
@@ -111,6 +112,7 @@ function Charts() {
             fusman={fusman?.external}
             text="Fusman esterne"
             errorFusman={errorFusman}
+            limit={[100, 150, 200]}
           />
         ) : (
           <Loading />

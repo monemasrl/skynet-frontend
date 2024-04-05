@@ -31,10 +31,12 @@ function GaugeChartWithData({
   fusman,
   text,
   errorFusman,
+  limit,
 }: {
   fusman?: number;
   text?: string;
   errorFusman?: boolean;
+  limit?: number[];
 }) {
   if (!errorFusman) {
     return (
@@ -47,15 +49,15 @@ function GaugeChartWithData({
             padding: 0.005,
             subArcs: [
               {
-                limit: 200,
+                limit: limit ? limit[0] : 200,
                 color: "rgb(224 54 76)",
               },
               {
-                limit: 300,
+                limit: limit ? limit[1] : 300,
                 color: "rgb(229, 121, 75)",
               },
               {
-                limit: 400,
+                limit: limit ? limit[2] : 400,
                 color: "rgb(69, 171, 60)",
               },
             ],
@@ -84,11 +86,14 @@ function GaugeChartWithData({
                   fill: "black",
                 },
               },
-              ticks: [{ value: 200 }, { value: 300 }],
+              ticks: [
+                { value: limit && limit[0] },
+                { value: limit && limit[1] },
+              ],
             },
           }}
           minValue={0}
-          maxValue={400}
+          maxValue={limit ? limit[2] : 400}
           value={fusman || 0}
         />
         <div className={style.charts__title}>{text ? text : ""}</div>
