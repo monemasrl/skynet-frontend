@@ -15,8 +15,8 @@ import style from "./style.module.scss";
 import { Error } from "../error/error";
 const datiTemporali = [
   {
-    title: "24H",
-    term: "daily",
+    title: "Settimana",
+    term: "weekly",
   },
   {
     title: "Mese",
@@ -69,7 +69,7 @@ function Charts() {
         });
     }
   }, [contextData?.apiClient, timeIntervalChart]);
-
+  console.log(fusman, "fusman");
   return (
     <section className={style.charts}>
       <SingleChart span={"small"}>
@@ -88,8 +88,8 @@ function Charts() {
       <SingleChart span={"small"}>
         {!loadingFusman ? (
           <GaugeChartWithData
-            fusman={fusman?.prod_ext}
-            text="Fusman esterne"
+            fusman={fusman?.prod_int}
+            text="Fusman interne"
             errorFusman={errorFusman}
             limit={[100, 150, 200]}
           />
@@ -100,8 +100,8 @@ function Charts() {
       <SingleChart span={"small"}>
         {!loadingFusman ? (
           <GaugeChartWithData
-            fusman={fusman?.prod_total}
-            text="Fusman totali"
+            fusman={fusman?.prod_ext}
+            text="Fusman esterne"
             errorFusman={errorFusman}
             limit={[200, 300, 400]}
           />
@@ -113,7 +113,7 @@ function Charts() {
       <SingleChart span={"small"}>
         {!loadingFusman ? (
           <div className={style.current}>
-            <div className={style.current__dato}>200</div>
+            <div className={style.current__dato}>{fusman?.current}</div>
             <div className={style.charts__title}>In lavorazione</div>
           </div>
         ) : (

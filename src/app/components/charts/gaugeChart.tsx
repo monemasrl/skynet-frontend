@@ -2,24 +2,25 @@ import dynamic from "next/dynamic";
 import { BsEmojiFrown, BsEmojiSmile, BsEmojiSunglasses } from "react-icons/bs";
 import style from "./style.module.scss";
 import { Error } from "../error/error";
+
 const GaugeComponent = dynamic(() => import("react-gauge-component"), {
   ssr: false,
 });
 
-function emoji(numero: number | undefined) {
-  if (numero && numero < 200)
+function emoji(numero: number | undefined, limit: number[] | undefined) {
+  if (numero != undefined && limit && numero < limit[0])
     return (
       <span>
         <BsEmojiFrown style={{ color: "#e96666" }} />
       </span>
     );
-  if (numero && numero > 200)
+  if (numero && limit && numero > limit[0] && numero < limit[1])
     return (
       <span>
         <BsEmojiSmile style={{ color: "rgb(229, 121, 75)" }} />
       </span>
     );
-  if (numero && numero > 300)
+  if (numero && limit && numero > limit[1] && numero < limit[2])
     return (
       <span>
         <BsEmojiSunglasses style={{ color: "rgb(69, 171, 60)" }} />
@@ -41,7 +42,7 @@ function GaugeChartWithData({
   if (!errorFusman) {
     return (
       <>
-        <div className={style.charts__icon}>{emoji(fusman)}</div>
+        <div className={style.charts__icon}>{emoji(fusman, limit)}</div>
         <GaugeComponent
           type="semicircle"
           arc={{
