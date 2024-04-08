@@ -1,4 +1,4 @@
-import { GetSalesResponse } from "@/generated";
+import { GetGraphResponse } from "@/generated";
 import {
   Bar,
   BarChart,
@@ -16,7 +16,7 @@ function BarChartWithData({
   datiLinea,
   timeIntervalChart,
 }: {
-  datiLinea: GetSalesResponse | undefined;
+  datiLinea: GetGraphResponse | undefined;
   timeIntervalChart: string;
 }) {
   console.log(datiLinea, "datiLinea");

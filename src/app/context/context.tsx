@@ -2,7 +2,7 @@
 import { type DefaultSession } from "next-auth";
 import { useSession } from "next-auth/react";
 import { createContext, useEffect, useState } from "react";
-import { OrderType, SkynetApiClient } from "../../generated/";
+import { OrderType, SkynetApiClient } from "../../generated";
 
 import { type tContext } from "../type/type";
 

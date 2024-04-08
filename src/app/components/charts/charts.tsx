@@ -1,7 +1,7 @@
 import {
-  GetFusmanResponse,
-  GetSalesResponse,
-  SalesTypeEnum,
+  GetCountersResponse,
+  GetGraphResponse,
+  GraphScaleEnum,
 } from "@/generated";
 import { useContext, useEffect, useState } from "react";
 import { BsEmojiFrown, BsEmojiSmile, BsEmojiSunglasses } from "react-icons/bs";
@@ -28,33 +28,12 @@ const datiTemporali = [
   },
 ];
 
-function emoji(numero: number) {
-  if (numero < 100)
-    return (
-      <span>
-        <BsEmojiFrown style={{ color: "#e96666" }} />
-      </span>
-    );
-  if (numero < 200)
-    return (
-      <span>
-        <BsEmojiSmile style={{ color: "rgb(229, 121, 75)" }} />
-      </span>
-    );
-  if (numero < 300)
-    return (
-      <span>
-        <BsEmojiSunglasses style={{ color: "rgb(69, 171, 60)" }} />
-      </span>
-    );
-}
-
 function Charts() {
   const [timeIntervalChart, setTimeIntervalChart] = useState<
-    SalesTypeEnum | null | undefined
-  >(SalesTypeEnum.DAILY);
-  const [fusman, setFusman] = useState<GetFusmanResponse>();
-  const [datiLinea, setDatiLinea] = useState<GetSalesResponse>();
+    GraphScaleEnum | null | undefined
+  >(GraphScaleEnum.WEEKLY);
+  const [fusman, setFusman] = useState<GetCountersResponse>();
+  const [datiLinea, setDatiLinea] = useState<GetGraphResponse>();
   const [errorFusman, setErrorFusman] = useState<boolean>(false);
   const [errorDatiLinea, setErrorDatiLinea] = useState<boolean>(false);
   const [loadingFusman, setLoadingFusman] = useState<boolean>(true);
@@ -64,7 +43,7 @@ function Charts() {
   useEffect(() => {
     if (contextData?.apiClient) {
       contextData.apiClient.stats
-        .getFusmans({ date: null })
+        .getCounters({ pDate: null })
         .then((data) => {
           setFusman(data);
           setLoadingFusman(false);
@@ -96,7 +75,7 @@ function Charts() {
       <SingleChart span={"small"}>
         {!loadingFusman ? (
           <GaugeChartWithData
-            fusman={fusman?.total}
+            fusman={fusman?.prod_total}
             text="Fusman totali"
             errorFusman={errorFusman}
             limit={[200, 300, 400]}
@@ -109,11 +88,34 @@ function Charts() {
       <SingleChart span={"small"}>
         {!loadingFusman ? (
           <GaugeChartWithData
-            fusman={fusman?.external}
+            fusman={fusman?.prod_ext}
             text="Fusman esterne"
             errorFusman={errorFusman}
             limit={[100, 150, 200]}
           />
+        ) : (
+          <Loading />
+        )}
+      </SingleChart>
+      <SingleChart span={"small"}>
+        {!loadingFusman ? (
+          <GaugeChartWithData
+            fusman={fusman?.prod_total}
+            text="Fusman totali"
+            errorFusman={errorFusman}
+            limit={[200, 300, 400]}
+          />
+        ) : (
+          <Loading />
+        )}
+      </SingleChart>
+
+      <SingleChart span={"small"}>
+        {!loadingFusman ? (
+          <div className={style.current}>
+            <div className={style.current__dato}>200</div>
+            <div className={style.charts__title}>In lavorazione</div>
+          </div>
         ) : (
           <Loading />
         )}
@@ -125,16 +127,16 @@ function Charts() {
         ) : !loadingDatiLinea ? (
           <>
             {" "}
-            {timeIntervalChart !== SalesTypeEnum.YEARLY && (
+            {timeIntervalChart !== GraphScaleEnum.YEARLY && (
               <LineChartWithData
                 datiLinea={datiLinea}
-                timeIntervalChart={timeIntervalChart || SalesTypeEnum.DAILY}
+                timeIntervalChart={timeIntervalChart || GraphScaleEnum.DAILY}
               />
             )}
-            {timeIntervalChart === SalesTypeEnum.YEARLY && (
+            {timeIntervalChart === GraphScaleEnum.YEARLY && (
               <BarChartWithData
                 datiLinea={datiLinea}
-                timeIntervalChart={timeIntervalChart || SalesTypeEnum.DAILY}
+                timeIntervalChart={timeIntervalChart || GraphScaleEnum.DAILY}
               />
             )}
             <div className={style.charts__title}>
@@ -145,7 +147,52 @@ function Charts() {
                     <span
                       key={item.title}
                       onClick={() => {
-                        setTimeIntervalChart(item.term as SalesTypeEnum);
+                        setTimeIntervalChart(item.term as GraphScaleEnum);
+                      }}
+                      style={{
+                        borderBottom: `${
+                          item.term === timeIntervalChart ? "2px solid" : ""
+                        }`,
+                      }}
+                    >
+                      {item.title}
+                    </span>
+                  );
+                })}
+              </div>
+            </div>
+          </>
+        ) : (
+          <Loading />
+        )}
+      </SingleChart>
+      <SingleChart span={"big"}>
+        {errorDatiLinea ? (
+          <Error text={"Errore nel caricamento dati"} />
+        ) : !loadingDatiLinea ? (
+          <>
+            {" "}
+            {timeIntervalChart !== GraphScaleEnum.YEARLY && (
+              <LineChartWithData
+                datiLinea={datiLinea}
+                timeIntervalChart={timeIntervalChart || GraphScaleEnum.DAILY}
+              />
+            )}
+            {timeIntervalChart === GraphScaleEnum.YEARLY && (
+              <BarChartWithData
+                datiLinea={datiLinea}
+                timeIntervalChart={timeIntervalChart || GraphScaleEnum.DAILY}
+              />
+            )}
+            <div className={style.charts__title}>
+              <div className={style.charts__title__tipoDati}>
+                <div className={style.title}>Volume di vendite: </div>
+                {datiTemporali.map((item) => {
+                  return (
+                    <span
+                      key={item.title}
+                      onClick={() => {
+                        setTimeIntervalChart(item.term as GraphScaleEnum);
                       }}
                       style={{
                         borderBottom: `${

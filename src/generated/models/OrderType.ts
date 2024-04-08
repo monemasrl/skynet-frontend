@@ -2,6 +2,7 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
+import type { CarrierTypeEnum } from './CarrierTypeEnum';
 import type { ConsegnaEnum } from './ConsegnaEnum';
 import type { Job } from './Job';
 import type { StatusEnum } from './StatusEnum';
@@ -15,7 +16,8 @@ export type OrderType = {
     data_consegna: (string | null);
     data_documento: string;
     modalita_consegna: (ConsegnaEnum | null);
-    corriere: (string | null);
+    carrier_type: (CarrierTypeEnum | null);
+    carrier_name: (string | null);
     tracking_number: (string | null);
     external_production: boolean;
     ddt: (string | null);

@@ -6,7 +6,7 @@ function ListaHeader() {
       className={`${style.lista__listaItem} ${style.lista__listaItem__header}`}
     >
       <div>Commessa</div>
-      <div>Cliente</div>
+      <div>Sede</div>
       <div>Data documento</div>
       <div className={style.lista__listaItem__header__stato}>Stato</div>
     </li>

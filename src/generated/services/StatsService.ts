@@ -2,28 +2,28 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { GetFusmanResponse } from '../models/GetFusmanResponse';
-import type { GetSalesResponse } from '../models/GetSalesResponse';
-import type { SalesTypeEnum } from '../models/SalesTypeEnum';
+import type { GetCountersResponse } from '../models/GetCountersResponse';
+import type { GetGraphResponse } from '../models/GetGraphResponse';
+import type { GraphScaleEnum } from '../models/GraphScaleEnum';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
 export class StatsService {
     constructor(public readonly httpRequest: BaseHttpRequest) {}
     /**
-     * Get Fusmans
-     * @returns GetFusmanResponse Successful Response
+     * Get Counters
+     * @returns GetCountersResponse Successful Response
      * @throws ApiError
      */
-    public getFusmans({
-        date,
+    public getCounters({
+        pDate,
     }: {
-        date?: (string | null),
-    }): CancelablePromise<GetFusmanResponse> {
+        pDate?: (string | null),
+    }): CancelablePromise<GetCountersResponse> {
         return this.httpRequest.request({
             method: 'GET',
-            url: '/stats/fusman',
+            url: '/stats/counters',
             query: {
-                'date': date,
+                'p_date': pDate,
             },
             errors: {
                 404: `Not found`,
@@ -33,17 +33,39 @@ export class StatsService {
     }
     /**
      * Get Sales
-     * @returns GetSalesResponse Successful Response
+     * @returns GetGraphResponse Successful Response
      * @throws ApiError
      */
     public getSales({
         type,
     }: {
-        type?: (SalesTypeEnum | null),
-    }): CancelablePromise<GetSalesResponse> {
+        type?: (GraphScaleEnum | null),
+    }): CancelablePromise<GetGraphResponse> {
         return this.httpRequest.request({
             method: 'GET',
             url: '/stats/sales',
+            query: {
+                'type': type,
+            },
+            errors: {
+                404: `Not found`,
+                422: `Validation Error`,
+            },
+        });
+    }
+    /**
+     * Get Production
+     * @returns GetGraphResponse Successful Response
+     * @throws ApiError
+     */
+    public getProduction({
+        type,
+    }: {
+        type?: (GraphScaleEnum | null),
+    }): CancelablePromise<GetGraphResponse> {
+        return this.httpRequest.request({
+            method: 'GET',
+            url: '/stats/production',
             query: {
                 'type': type,
             },

@@ -54,7 +54,7 @@ function NavBar({
           </div>
         </div>
         <div className={style.navbar__ui}>
-          {isLandscape && role === "manager" && (
+          {isLandscape && (
             <button
               className={style.buttonCharts}
               onClick={() => setDrawerCharts(true)}

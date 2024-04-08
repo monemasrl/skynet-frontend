@@ -70,8 +70,8 @@ export default function Home() {
               ease: "easeIn",
             }}
           >
-            {" "}
-            {!isLandscape ? (
+            <Charts />{" "}
+            {/*     {!isLandscape ? (
               <Charts />
             ) : (
               userRole === "manager" && (
@@ -83,7 +83,7 @@ export default function Home() {
                   <Charts />
                 </Drawer>
               )
-            )}{" "}
+            )}{" "} */}
           </motion.div>
           <motion.main
             className={styles.main}
