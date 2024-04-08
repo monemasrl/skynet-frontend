@@ -4,7 +4,6 @@ import {
   GraphScaleEnum,
 } from "@/generated";
 import { useContext, useEffect, useState } from "react";
-import { BsEmojiFrown, BsEmojiSmile, BsEmojiSunglasses } from "react-icons/bs";
 import { context } from "../../context/context";
 import Loading from "../loading/loading";
 import BarChartWithData from "./barChart";
@@ -13,6 +12,7 @@ import LineChartWithData from "./lineChart";
 import SingleChart from "./singleChart";
 import style from "./style.module.scss";
 import { Error } from "../error/error";
+import Counter from "./counter";
 const datiTemporali = [
   {
     title: "Settimana",
@@ -112,10 +112,7 @@ function Charts() {
 
       <SingleChart span={"small"}>
         {!loadingFusman ? (
-          <div className={style.current}>
-            <div className={style.current__dato}>{fusman?.current}</div>
-            <div className={style.charts__title}>In lavorazione</div>
-          </div>
+          <Counter value={fusman?.current || 0} direction="up" />
         ) : (
           <Loading />
         )}
