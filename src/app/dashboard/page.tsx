@@ -11,22 +11,20 @@ import Charts from "../components/charts/charts";
 import { useEffect, useState } from "react";
 import { Suspense } from "react";
 import NavBar from "../components/navbar/navbar";
-import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { motion } from "framer-motion";
 import { DefaultSession } from "next-auth";
 import { useAuth } from "react-oidc-context";
-interface Session extends DefaultSession {
-  roles?: string[];
-}
-export default function Home() {
+import { withAuthenticationRequired } from "react-oidc-context";
+
+function Home() {
   //const isPhone = useMediaQuery(MEDIAQUERIES.phone);
   const isLandscape = useMediaQuery(MEDIAQUERIES.landscape);
   const [drawerDettagli, setDrawerDettagli] = useState(false);
   const [drawerCharts, setDrawerCharts] = useState(false);
   const [userRole, setUserRole] = useState<string>("");
-  const { data: sessionToken, status } = useSession();
-  console.log(sessionToken, "sessionToken");
+  const auth = useAuth();
+  console.log(auth.isAuthenticated, "useAuth");
 
   // Override console.error
   // This is a hack to suppress the warning about missing defaultProps in recharts library as of version 2.12
@@ -38,17 +36,21 @@ export default function Home() {
   };
 
   useEffect(() => {
-    const checkIfManager = (sessionToken as Session)?.roles?.includes(
+    console.log(auth?.isAuthenticated === false, "auth?.isAuthenticated");
+    if (auth?.isAuthenticated === false) {
+      redirect("/");
+    }
+    const checkIfManager = (auth?.user?.profile?.groups as string[])?.includes(
       "manager"
     );
+
     if (checkIfManager) {
       setUserRole("manager");
     }
-  }, [sessionToken]);
+  }, [auth]);
 
   console.log(userRole, "userRole");
-  const auth = useAuth();
-  console.log(auth, "useAuth");
+
   return (
     <Suspense>
       <ContextProvider>
@@ -69,7 +71,7 @@ export default function Home() {
               ease: "easeIn",
             }}
           >
-            <Charts />{" "}
+            {userRole === "manager" && <Charts />}
             {/*     {!isLandscape ? (
               <Charts />
             ) : (
@@ -118,3 +120,7 @@ export default function Home() {
     </Suspense>
   );
 }
+
+export default withAuthenticationRequired(Home, {
+  OnRedirecting: () => <div>Redirecting to the login page...</div>,
+});
