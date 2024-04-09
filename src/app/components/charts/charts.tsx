@@ -3,7 +3,7 @@ import {
   GetGraphResponse,
   GraphScaleEnum,
 } from "@/generated";
-import { use, useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { context } from "../../context/context";
 import Loading from "../loading/loading";
 import BarChartWithData from "./barChart";

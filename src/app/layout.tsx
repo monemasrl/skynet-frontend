@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { Jost } from "next/font/google";
-import SessionProvider from "./components/sessionProvider/sessionProvider";
 import AuthProvider from "./components/sessionProvider/authProvider";
-import SessionGuard from "./components/SessionGuard";
 import "./sass/all.scss";
 
 const jost = Jost({
@@ -34,16 +32,12 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className={jost.className}>
-        <SessionProvider session={session} refetchInterval={4 * 60}>
-          <SessionGuard>
-            <AuthProvider {...oidcConfig}>
-              <div className="mainWrapper">
-                {children}
-                <footer className="mainFooter">powered by Skynet</footer>
-              </div>
-            </AuthProvider>
-          </SessionGuard>
-        </SessionProvider>
+        <AuthProvider {...oidcConfig}>
+          <div className="mainWrapper">
+            {children}
+            <footer className="mainFooter">powered by Skynet</footer>
+          </div>
+        </AuthProvider>
       </body>
     </html>
   );

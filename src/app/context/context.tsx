@@ -1,16 +1,8 @@
 "use client";
-import { type DefaultSession } from "next-auth";
-import { useSession } from "next-auth/react";
 import { createContext, useEffect, useState } from "react";
 import { OrderType, SkynetApiClient } from "../../generated";
 import { useAuth } from "react-oidc-context";
 import { type tContext } from "../type/type";
-
-interface SessionExtension extends DefaultSession {
-  access_token: string;
-  apiToken: string;
-  refreshToken: string;
-}
 
 const context = createContext<tContext | null>(null);
 
@@ -41,10 +33,6 @@ function ContextProvider({ children }: { children: React.ReactNode }): any {
   const [isCommessaSelectedByList, setIsCommessaSelectedByList] =
     useState<boolean>(false);
 
-  const { data: sessionToken, status } = useSession() as {
-    data: SessionExtension | null;
-    status: string;
-  };
   const auth = useAuth();
   useEffect(() => {
     if (auth?.user?.access_token) {
