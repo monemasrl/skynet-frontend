@@ -25,7 +25,8 @@ export default async function RootLayout({
   const oidcConfig = {
     authority: "https://auth.service.monema.dev",
     client_id: "skynet",
-    redirect_uri: "http://localhost:3000/dashboard",
+    redirect_uri: process.env.REDIRECT_URI,
+    scope: "openid profile email microprofile-jwt",
     metadataUrl:
       "https://auth.service.monema.dev/realms/skynet/.well-known/openid-configuration",
     // ...
