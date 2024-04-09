@@ -1,10 +1,7 @@
-import { Datum } from "@/generated";
+
 import moment from "moment";
 
-type TtimeData = {
-    date: number | string;
-    value: number;
-};
+
 function handleSearchParamsUrl(
     term: number | undefined,
     searchParams: URLSearchParams,

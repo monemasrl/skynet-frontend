@@ -15,7 +15,7 @@ import { useSession } from "next-auth/react";
 import { redirect } from "next/navigation";
 import { motion } from "framer-motion";
 import { DefaultSession } from "next-auth";
-
+import { useAuth } from "react-oidc-context";
 interface Session extends DefaultSession {
   roles?: string[];
 }
@@ -27,9 +27,6 @@ export default function Home() {
   const [userRole, setUserRole] = useState<string>("");
   const { data: sessionToken, status } = useSession();
   console.log(sessionToken, "sessionToken");
-  if (sessionToken === null) {
-    redirect("/");
-  }
 
   // Override console.error
   // This is a hack to suppress the warning about missing defaultProps in recharts library as of version 2.12
@@ -50,6 +47,8 @@ export default function Home() {
   }, [sessionToken]);
 
   console.log(userRole, "userRole");
+  const auth = useAuth();
+  console.log(auth, "useAuth");
   return (
     <Suspense>
       <ContextProvider>

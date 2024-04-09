@@ -12,11 +12,12 @@ export default function LoginPage() {
   if (sessionToken !== null) {
     redirect("/dashboard");
   }
+
   return (
     <Suspense>
       <ContextProvider>
         <main className={style.login}>
-          <Login token={sessionToken} />
+          <Login />
         </main>
       </ContextProvider>
     </Suspense>

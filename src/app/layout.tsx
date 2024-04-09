@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { getServerSession } from "next-auth";
 import { Jost } from "next/font/google";
 import SessionProvider from "./components/sessionProvider/sessionProvider";
-
+import AuthProvider from "./components/sessionProvider/authProvider";
 import SessionGuard from "./components/SessionGuard";
 import "./sass/all.scss";
 
@@ -22,18 +22,26 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const session = await getServerSession();
-
+  const oidcConfig = {
+    authority: "https://auth.service.monema.dev",
+    client_id: "skynet",
+    redirect_uri: "http://localhost:3000/dashboard",
+    metadataUrl:
+      "https://auth.service.monema.dev/realms/skynet/.well-known/openid-configuration",
+    // ...
+  };
   return (
     <html lang="en">
       <body className={jost.className}>
         <SessionProvider session={session} refetchInterval={4 * 60}>
           <SessionGuard>
-            <div className="mainWrapper">
-              {children}
-              <footer className="mainFooter">powered by Skynet</footer>
-            </div>
+            <AuthProvider {...oidcConfig}>
+              <div className="mainWrapper">
+                {children}
+                <footer className="mainFooter">powered by Skynet</footer>
+              </div>
+            </AuthProvider>
           </SessionGuard>
-
         </SessionProvider>
       </body>
     </html>

@@ -3,7 +3,7 @@ import { type DefaultSession } from "next-auth";
 import { useSession } from "next-auth/react";
 import { createContext, useEffect, useState } from "react";
 import { OrderType, SkynetApiClient } from "../../generated";
-
+import { useAuth } from "react-oidc-context";
 import { type tContext } from "../type/type";
 
 interface SessionExtension extends DefaultSession {
@@ -45,17 +45,17 @@ function ContextProvider({ children }: { children: React.ReactNode }): any {
     data: SessionExtension | null;
     status: string;
   };
-
+  const auth = useAuth();
   useEffect(() => {
-    if (status === "authenticated" && sessionToken?.access_token) {
+    if (auth?.user?.access_token) {
       setApiClient(
         new SkynetApiClient({
-          TOKEN: sessionToken?.access_token,
+          TOKEN: auth?.user?.access_token,
           BASE: process.env.NEXT_PUBLIC_BACKEND_URL,
         })
       );
     }
-  }, [sessionToken, status]);
+  }, [auth]);
 
   const value: tContext = {
     filtro,

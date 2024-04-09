@@ -3,7 +3,7 @@ import {
   GetGraphResponse,
   GraphScaleEnum,
 } from "@/generated";
-import { useContext, useEffect, useState } from "react";
+import { use, useContext, useEffect, useState } from "react";
 import { context } from "../../context/context";
 import Loading from "../loading/loading";
 import BarChartWithData from "./barChart";
@@ -13,6 +13,7 @@ import SingleChart from "./singleChart";
 import style from "./style.module.scss";
 import { Error } from "../error/error";
 import Counter from "./counter";
+
 const datiTemporali = [
   {
     title: "Settimana",
