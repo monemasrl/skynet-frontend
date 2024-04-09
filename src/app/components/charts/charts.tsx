@@ -33,12 +33,20 @@ function Charts() {
   const [timeIntervalChart, setTimeIntervalChart] = useState<
     GraphScaleEnum | null | undefined
   >(GraphScaleEnum.WEEKLY);
+  const [timeIntervalChartProduction, setTimeIntervalChartProduction] =
+    useState<GraphScaleEnum | null | undefined>(GraphScaleEnum.WEEKLY);
   const [fusman, setFusman] = useState<GetCountersResponse>();
   const [datiLinea, setDatiLinea] = useState<GetGraphResponse>();
+  const [datiLineaProduction, setDatiLineaProduction] =
+    useState<GetGraphResponse>();
   const [errorFusman, setErrorFusman] = useState<boolean>(false);
   const [errorDatiLinea, setErrorDatiLinea] = useState<boolean>(false);
+  const [errorDatiLineaProduction, setErrorDatiLineaProduction] =
+    useState<boolean>(false);
   const [loadingFusman, setLoadingFusman] = useState<boolean>(true);
   const [loadingDatiLinea, setLoadingDatiLinea] = useState<boolean>(true);
+  const [loadingDatiLineaProduction, setLoadingDatiLineaProduction] =
+    useState<boolean>(true);
   const contextData = useContext(context);
 
   useEffect(() => {
@@ -70,6 +78,21 @@ function Charts() {
         });
     }
   }, [contextData?.apiClient, timeIntervalChart]);
+
+  useEffect(() => {
+    if (contextData?.apiClient) {
+      contextData.apiClient.stats
+        .getProduction({ type: timeIntervalChartProduction })
+        .then((data) => {
+          setLoadingDatiLineaProduction(false);
+          setDatiLineaProduction(data);
+        })
+        .catch((err) => {
+          console.log(err);
+          setErrorDatiLinea(true);
+        });
+    }
+  }, [contextData?.apiClient, timeIntervalChartProduction]);
   console.log(fusman, "fusman");
   return (
     <section className={style.charts}>
@@ -165,36 +188,44 @@ function Charts() {
         )}
       </SingleChart>
       <SingleChart span={"big"}>
-        {errorDatiLinea ? (
+        {errorDatiLineaProduction ? (
           <Error text={"Errore nel caricamento dati"} />
         ) : !loadingDatiLinea ? (
           <>
             {" "}
-            {timeIntervalChart !== GraphScaleEnum.YEARLY && (
+            {timeIntervalChartProduction !== GraphScaleEnum.YEARLY && (
               <LineChartWithData
-                datiLinea={datiLinea}
-                timeIntervalChart={timeIntervalChart || GraphScaleEnum.DAILY}
+                datiLinea={datiLineaProduction}
+                timeIntervalChart={
+                  timeIntervalChartProduction || GraphScaleEnum.DAILY
+                }
               />
             )}
-            {timeIntervalChart === GraphScaleEnum.YEARLY && (
+            {timeIntervalChartProduction === GraphScaleEnum.YEARLY && (
               <BarChartWithData
-                datiLinea={datiLinea}
-                timeIntervalChart={timeIntervalChart || GraphScaleEnum.DAILY}
+                datiLinea={datiLineaProduction}
+                timeIntervalChart={
+                  timeIntervalChartProduction || GraphScaleEnum.DAILY
+                }
               />
             )}
             <div className={style.charts__title}>
               <div className={style.charts__title__tipoDati}>
-                <div className={style.title}>Volume di vendite: </div>
+                <div className={style.title}>Volume Produzione: </div>
                 {datiTemporali.map((item) => {
                   return (
                     <span
                       key={item.title}
                       onClick={() => {
-                        setTimeIntervalChart(item.term as GraphScaleEnum);
+                        setTimeIntervalChartProduction(
+                          item.term as GraphScaleEnum
+                        );
                       }}
                       style={{
                         borderBottom: `${
-                          item.term === timeIntervalChart ? "2px solid" : ""
+                          item.term === timeIntervalChartProduction
+                            ? "2px solid"
+                            : ""
                         }`,
                       }}
                     >

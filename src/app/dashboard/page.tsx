@@ -13,7 +13,6 @@ import { Suspense } from "react";
 import NavBar from "../components/navbar/navbar";
 import { redirect } from "next/navigation";
 import { motion } from "framer-motion";
-import { DefaultSession } from "next-auth";
 import { useAuth } from "react-oidc-context";
 import { withAuthenticationRequired } from "react-oidc-context";
 
@@ -122,5 +121,5 @@ function Home() {
 }
 
 export default withAuthenticationRequired(Home, {
-  OnRedirecting: () => <div>Redirecting to the login page...</div>,
+  OnRedirecting: () => <div>Redirecting you to the login page...</div>,
 });

@@ -3,8 +3,6 @@
 import { ContextProvider } from "./context/context";
 import Login from "./components/login/login";
 import { Suspense } from "react";
-
-import { redirect } from "next/navigation";
 import style from "./page.module.scss";
 
 export default function LoginPage() {

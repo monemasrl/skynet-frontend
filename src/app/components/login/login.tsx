@@ -1,7 +1,6 @@
 import { redirect } from "next/navigation";
 import Image from "next/image";
 import style from "./style.module.scss";
-import { signIn, signOut } from "next-auth/react";
 import { motion } from "framer-motion";
 import { useAuth } from "react-oidc-context";
 
@@ -24,12 +23,7 @@ function LoginBtn() {
   }
 
   if (auth.isAuthenticated) {
-    return (
-      <div>
-        Hello {auth.user?.profile.sub}{" "}
-        <button onClick={() => void auth.removeUser()}>Log out</button>
-      </div>
-    );
+    redirect("/dashboard");
   }
 
   return <button onClick={() => void auth.signinRedirect()}>Log in</button>;

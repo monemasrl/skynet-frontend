@@ -30,8 +30,8 @@ async function getDataByTerm(url: string, term: string | undefined, query: strin
  */
 
 const formatXAxis = (tickFormat: string, timeIntervalChart: string) => {
-    if (timeIntervalChart === "daily")
-        return moment(tickFormat).format("HH:mm");
+    if (timeIntervalChart === "weekly")
+        return moment(tickFormat).format("DD/MM");
     if (timeIntervalChart === "monthly")
         return moment(tickFormat).format("DD/MM");
     if (timeIntervalChart === "yearly")

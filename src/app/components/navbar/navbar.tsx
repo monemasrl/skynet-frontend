@@ -1,15 +1,15 @@
 import Image from "next/image";
-
 import style from "./style.module.scss";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Drawer from "../drawer/drawer";
 import { Dispatch, SetStateAction, useState } from "react";
-import { signOut } from "next-auth/react";
+
 import { TbDashboard } from "react-icons/tb";
 import { useMediaQuery } from "@mui/material";
 import { MEDIAQUERIES } from "@/app/utility/variabili";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useAuth } from "react-oidc-context";
+import { redirect } from "next/navigation";
 
 function NavBar({
   setDrawerCharts,
@@ -54,14 +54,6 @@ function NavBar({
           </div>
         </div>
         <div className={style.navbar__ui}>
-          {isLandscape && (
-            <button
-              className={style.buttonCharts}
-              onClick={() => setDrawerCharts(true)}
-            >
-              <TbDashboard /> <span>Charts</span>
-            </button>
-          )}
           <ul className={style.navbar__navLink}>
             <li className={style.burger} onClick={() => setDrawer(true)}>
               <RxHamburgerMenu />
@@ -70,7 +62,12 @@ function NavBar({
         </div>
       </nav>
       <Drawer isOpen={drawer} setIsOpen={setDrawer}>
-        <button className="btn-generic" onClick={() => signOut()}>
+        <button
+          className="btn-generic"
+          onClick={() => {
+            sessionData.removeUser();
+          }}
+        >
           logout
         </button>
       </Drawer>
