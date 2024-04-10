@@ -10,12 +10,11 @@ import Charts from "../components/charts/charts";
 import { useEffect, useState } from "react";
 import { Suspense } from "react";
 import NavBar from "../components/navbar/navbar";
-import { redirect } from "next/navigation";
 import { motion } from "framer-motion";
 import { useAuth } from "react-oidc-context";
-import { withAuthenticationRequired } from "react-oidc-context";
-import AuthProviderHoc from "../components/sessionProvider/authProvider";
+import { redirect } from "next/navigation";
 import Link from "next/link";
+
 function Home() {
   //const isPhone = useMediaQuery(MEDIAQUERIES.phone);
   const isLandscape = useMediaQuery(MEDIAQUERIES.landscape);
@@ -48,11 +47,7 @@ function Home() {
   console.log(userRole, "userRole");
 
   if (auth.isAuthenticated === false) {
-    return (
-      <div style={{ textAlign: "center", marginTop: "3rem" }}>
-        Accesso non autorizzato, <Link href="/">Torna al Login</Link>
-      </div>
-    );
+    redirect("/");
   }
 
   return (
