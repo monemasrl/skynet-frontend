@@ -10,9 +10,10 @@ import Charts from "../components/charts/charts";
 import { useEffect, useState } from "react";
 import { Suspense } from "react";
 import NavBar from "../components/navbar/navbar";
+import { redirect } from "next/navigation";
 import { motion } from "framer-motion";
 import { useAuth } from "react-oidc-context";
-import Link from "next/link";
+
 function Home() {
   //const isPhone = useMediaQuery(MEDIAQUERIES.phone);
   const isLandscape = useMediaQuery(MEDIAQUERIES.landscape);
@@ -31,7 +32,7 @@ function Home() {
   };
 
   useEffect(() => {
-    console.log(auth?.isAuthenticated === false, "auth?.isAuthenticated");
+    console.log(auth?.isAuthenticated, "auth?.isAuthenticated");
 
     const checkIfManager = (auth?.user?.profile?.groups as string[])?.includes(
       "manager"
@@ -45,11 +46,7 @@ function Home() {
   console.log(userRole, "userRole");
 
   if (auth.isAuthenticated === false) {
-    return (
-      <div style={{ textAlign: "center", marginTop: "3rem" }}>
-        Accesso non autorizzato, <Link href="/">Torna al Login</Link>
-      </div>
-    );
+    redirect("/");
   }
 
   return (

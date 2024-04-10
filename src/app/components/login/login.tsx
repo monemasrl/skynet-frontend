@@ -30,15 +30,7 @@ function LoginBtn() {
 }
 function Login() {
   return (
-    <motion.section
-      className={style.login}
-      initial={{
-        opacity: 0,
-      }}
-      animate={{
-        opacity: 1,
-      }}
-    >
+    <section className={style.login}>
       <motion.header
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
@@ -59,7 +51,7 @@ function Login() {
       >
         <LoginBtn />
       </motion.section>
-    </motion.section>
+    </section>
   );
 }
 
