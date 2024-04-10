@@ -34,10 +34,10 @@ function Home() {
 
   useEffect(() => {
     console.log(auth?.isAuthenticated === false, "auth?.isAuthenticated");
-    if (auth?.isAuthenticated === false) {
+    /*    if (auth?.isAuthenticated === false) {
       console.log("redirecting cc");
       redirect("/");
-    }
+    } */
     const checkIfManager = (auth?.user?.profile?.groups as string[])?.includes(
       "manager"
     );
