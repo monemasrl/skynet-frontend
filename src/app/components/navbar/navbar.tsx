@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import style from "./style.module.scss";
 import { RxHamburgerMenu } from "react-icons/rx";
@@ -19,9 +20,9 @@ function NavBar({
   role: string;
 }) {
   const [drawer, setDrawer] = useState(false);
-  const isLandscape = useMediaQuery(MEDIAQUERIES.landscape);
+  //const isLandscape = useMediaQuery(MEDIAQUERIES.landscape);
   const sessionData = useAuth();
-  console.log(sessionData, "sessionData");
+
   return (
     <>
       <div className={style.poweredBy}>
@@ -66,6 +67,7 @@ function NavBar({
           className="btn-generic"
           onClick={() => {
             sessionData.removeUser();
+            sessionData.signoutRedirect();
           }}
         >
           logout

@@ -1,5 +1,4 @@
 "use client";
-
 import { MEDIAQUERIES } from "../utility/variabili";
 import styles from "./style.module.scss";
 import MainListContainer from "../components/lista/mainListContainer";
@@ -15,7 +14,7 @@ import { redirect } from "next/navigation";
 import { motion } from "framer-motion";
 import { useAuth } from "react-oidc-context";
 import { withAuthenticationRequired } from "react-oidc-context";
-
+import AuthProviderHoc from "../components/sessionProvider/authProvider";
 function Home() {
   //const isPhone = useMediaQuery(MEDIAQUERIES.phone);
   const isLandscape = useMediaQuery(MEDIAQUERIES.landscape);
@@ -23,7 +22,6 @@ function Home() {
   const [drawerCharts, setDrawerCharts] = useState(false);
   const [userRole, setUserRole] = useState<string>("");
   const auth = useAuth();
-  console.log(auth.isAuthenticated, "useAuth");
 
   // Override console.error
   // This is a hack to suppress the warning about missing defaultProps in recharts library as of version 2.12
@@ -37,6 +35,7 @@ function Home() {
   useEffect(() => {
     console.log(auth?.isAuthenticated === false, "auth?.isAuthenticated");
     if (auth?.isAuthenticated === false) {
+      console.log("redirecting cc");
       redirect("/");
     }
     const checkIfManager = (auth?.user?.profile?.groups as string[])?.includes(
@@ -49,6 +48,10 @@ function Home() {
   }, [auth]);
 
   console.log(userRole, "userRole");
+
+  if (auth.isAuthenticated === false) {
+    return <div>not isAuthenticated</div>;
+  }
 
   return (
     <Suspense>
@@ -119,7 +122,10 @@ function Home() {
     </Suspense>
   );
 }
-
-export default withAuthenticationRequired(Home, {
-  OnRedirecting: () => <div>Redirecting you to the login page...</div>,
+export default Home;
+/* export default withAuthenticationRequired(Home, {
+  OnRedirecting: () => {
+    return <div>Stai per essere reindirizzato alla pagina di Login</div>;
+  },
 });
+ */

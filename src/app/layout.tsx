@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
-import { getServerSession } from "next-auth";
 import { Jost } from "next/font/google";
-import AuthProvider from "./components/sessionProvider/authProvider";
+import AuthProviderHoc from "./components/sessionProvider/authProvider";
 import "./sass/all.scss";
 
 const jost = Jost({
@@ -19,25 +18,15 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const session = await getServerSession();
-  const oidcConfig = {
-    authority: "https://auth.service.monema.dev",
-    client_id: "skynet",
-    redirect_uri: process.env.REDIRECT_URI,
-    scope: "openid profile email microprofile-jwt",
-    metadataUrl:
-      "https://auth.service.monema.dev/realms/skynet/.well-known/openid-configuration",
-    // ...
-  };
   return (
     <html lang="en">
       <body className={jost.className}>
-        <AuthProvider {...oidcConfig}>
+        <AuthProviderHoc>
           <div className="mainWrapper">
             {children}
             <footer className="mainFooter">powered by Skynet</footer>
           </div>
-        </AuthProvider>
+        </AuthProviderHoc>
       </body>
     </html>
   );
