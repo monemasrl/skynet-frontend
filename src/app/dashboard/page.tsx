@@ -15,6 +15,7 @@ import { motion } from "framer-motion";
 import { useAuth } from "react-oidc-context";
 import { withAuthenticationRequired } from "react-oidc-context";
 import AuthProviderHoc from "../components/sessionProvider/authProvider";
+import Link from "next/link";
 function Home() {
   //const isPhone = useMediaQuery(MEDIAQUERIES.phone);
   const isLandscape = useMediaQuery(MEDIAQUERIES.landscape);
@@ -34,10 +35,7 @@ function Home() {
 
   useEffect(() => {
     console.log(auth?.isAuthenticated === false, "auth?.isAuthenticated");
-    /*    if (auth?.isAuthenticated === false) {
-      console.log("redirecting cc");
-      redirect("/");
-    } */
+
     const checkIfManager = (auth?.user?.profile?.groups as string[])?.includes(
       "manager"
     );
@@ -50,7 +48,11 @@ function Home() {
   console.log(userRole, "userRole");
 
   if (auth.isAuthenticated === false) {
-    return <div>not isAuthenticated</div>;
+    return (
+      <div style={{ textAlign: "center", marginTop: "3rem" }}>
+        Accesso non autorizzato, <Link href="/">Torna al Login</Link>
+      </div>
+    );
   }
 
   return (

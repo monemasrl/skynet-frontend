@@ -25,7 +25,6 @@ function ContextProvider({ children }: { children: React.ReactNode }): any {
   const [ricerca, setRicerca] = useState<string>("");
   const [commessa, setCommessa] = useState<OrderType | null | undefined>(null);
   const [currentPage, setCurrentPage] = useState<number>(1);
-
   const [isArchived, setIsArchived] = useState<boolean>(false);
   const [apiClient, setApiClient] = useState<SkynetApiClient | undefined>(
     undefined
