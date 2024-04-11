@@ -127,7 +127,7 @@ function Charts() {
             fusman={fusman?.prod_ext}
             text="Fusman esterne"
             errorFusman={errorFusman}
-            limit={[200, 300, 400]}
+            limit={[100, 150, 200]}
           />
         ) : (
           <Loading />
@@ -148,14 +148,20 @@ function Charts() {
         ) : !loadingDatiLinea ? (
           <>
             {" "}
-            {timeIntervalChart !== GraphScaleEnum.YEARLY && (
-              <LineChartWithData
+            {timeIntervalChart === GraphScaleEnum.WEEKLY && (
+              <BarChartWithData
                 datiLinea={datiLinea}
-                timeIntervalChart={timeIntervalChart || GraphScaleEnum.DAILY}
+                timeIntervalChart={timeIntervalChart || GraphScaleEnum.WEEKLY}
+              />
+            )}
+            {timeIntervalChart === GraphScaleEnum.MONTHLY && (
+              <BarChartWithData
+                datiLinea={datiLinea}
+                timeIntervalChart={timeIntervalChart || GraphScaleEnum.MONTHLY}
               />
             )}
             {timeIntervalChart === GraphScaleEnum.YEARLY && (
-              <BarChartWithData
+              <LineChartWithData
                 datiLinea={datiLinea}
                 timeIntervalChart={timeIntervalChart || GraphScaleEnum.DAILY}
               />
@@ -190,19 +196,27 @@ function Charts() {
       <SingleChart span={"big"}>
         {errorDatiLineaProduction ? (
           <Error text={"Errore nel caricamento dati"} />
-        ) : !loadingDatiLinea ? (
+        ) : !loadingDatiLineaProduction ? (
           <>
             {" "}
-            {timeIntervalChartProduction !== GraphScaleEnum.YEARLY && (
-              <LineChartWithData
+            {timeIntervalChartProduction === GraphScaleEnum.WEEKLY && (
+              <BarChartWithData
                 datiLinea={datiLineaProduction}
                 timeIntervalChart={
-                  timeIntervalChartProduction || GraphScaleEnum.DAILY
+                  timeIntervalChartProduction || GraphScaleEnum.WEEKLY
+                }
+              />
+            )}
+            {timeIntervalChartProduction === GraphScaleEnum.MONTHLY && (
+              <BarChartWithData
+                datiLinea={datiLineaProduction}
+                timeIntervalChart={
+                  timeIntervalChartProduction || GraphScaleEnum.MONTHLY
                 }
               />
             )}
             {timeIntervalChartProduction === GraphScaleEnum.YEARLY && (
-              <BarChartWithData
+              <LineChartWithData
                 datiLinea={datiLineaProduction}
                 timeIntervalChart={
                   timeIntervalChartProduction || GraphScaleEnum.DAILY

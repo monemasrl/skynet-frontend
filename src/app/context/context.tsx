@@ -31,7 +31,7 @@ function ContextProvider({ children }: { children: React.ReactNode }): any {
   );
   const [isCommessaSelectedByList, setIsCommessaSelectedByList] =
     useState<boolean>(false);
-
+  const [refreshData, setRefreshData] = useState<boolean>(false);
   const auth = useAuth();
   useEffect(() => {
     if (auth?.user?.access_token) {
@@ -53,7 +53,6 @@ function ContextProvider({ children }: { children: React.ReactNode }): any {
     setRicerca,
     currentPage,
     setCurrentPage,
-
     setIsArchived,
     isArchived,
     apiClient,

@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import { Error } from "../error/error";
 import { formatXAxis } from "@/app/utility/functions";
+import CustomTooltip from "./tooltip";
 
 function BarChartWithData({
   datiLinea,
@@ -24,7 +25,7 @@ function BarChartWithData({
     return (
       <ResponsiveContainer>
         <BarChart width={100} height={200} data={datiLinea.data}>
-          <Tooltip />
+          <Tooltip content={<CustomTooltip />} />
           <CartesianGrid strokeDasharray="3 3" />
 
           <Bar dataKey="external" fill="#ea2e46" stackId="1" />

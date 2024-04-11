@@ -113,3 +113,19 @@
     text-align: center;
   }
 }
+.customTooltip {
+  background-color: #fff;
+  padding: 0.5rem 1rem 0.5rem 1rem;
+  border: 1px solid #c4c4c4;
+  .int {
+    color: $green;
+  }
+  .ext {
+    color: $red;
+  }
+  p {
+    font-size: 1rem;
+    font-weight: 500;
+    margin: 0;
+  }
+}

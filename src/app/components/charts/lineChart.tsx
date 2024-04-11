@@ -11,6 +11,7 @@ import {
 } from "recharts";
 import { Error } from "../error/error";
 import { formatXAxis } from "@/app/utility/functions";
+import CustomTooltip from "./tooltip";
 
 function LineChartWithData({
   datiLinea,
@@ -19,7 +20,6 @@ function LineChartWithData({
   datiLinea: GetGraphResponse | undefined;
   timeIntervalChart: string;
 }) {
-  console.log(datiLinea?.data.length, "datiLinea");
   if (datiLinea?.data && datiLinea?.data.length > 0) {
     return (
       <ResponsiveContainer>
@@ -51,7 +51,7 @@ function LineChartWithData({
             tickFormatter={(tick) => formatXAxis(tick, timeIntervalChart)}
             type={"category"}
           />
-          <Tooltip />
+          <Tooltip content={<CustomTooltip />} />
           <Legend />
           <YAxis fontSize={10} />
         </AreaChart>
