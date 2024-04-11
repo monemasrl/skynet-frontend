@@ -41,7 +41,7 @@ function ContextProvider({ children }: { children: React.ReactNode }): any {
             BASE: process.env.NEXT_PUBLIC_BACKEND_URL,
           })
         );
-      }, 600000);
+      }, 300000);
 
       return () => {
         clearInterval(dataInterval);
