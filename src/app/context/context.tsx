@@ -6,17 +6,6 @@ import { type tContext } from "../type/type";
 
 const context = createContext<tContext | null>(null);
 
-/**
- * Context applicazione
- * @date 20/03/2024 - 12:18:27
- * @description : FUNZIONAMENTO PAGINAZIONE E URL PARAMS
- * @var currentPage - 1 di default se non trova il parametro page
- * @function useEffect - al caricamento della app cerca i dati in base al parametro page e li setta in dati. *
- * Esegue la funzione handleSearchParamsUrl che setta i parametri di ricerca dell'url
- * La app viene aggiornata ogni volta che cambia currentPage (dipendenza di useEffect)
- *
- */
-
 function ContextProvider({ children }: { children: React.ReactNode }): any {
   /*   const searchParams = useSearchParams();
   const pathname = usePathname();
@@ -32,15 +21,31 @@ function ContextProvider({ children }: { children: React.ReactNode }): any {
   const [isCommessaSelectedByList, setIsCommessaSelectedByList] =
     useState<boolean>(false);
   const [refreshData, setRefreshData] = useState<boolean>(false);
+
+  console.log(refreshData, "refreshData");
   const auth = useAuth();
   useEffect(() => {
     if (auth?.user?.access_token) {
+      //setta al caricamento della pagina l'apiClient con il token dell'utente
       setApiClient(
         new SkynetApiClient({
           TOKEN: auth?.user?.access_token,
           BASE: process.env.NEXT_PUBLIC_BACKEND_URL,
         })
       );
+      // aggiorna l'apiClient ogni 10 minuti
+      let dataInterval = setInterval(() => {
+        setApiClient(
+          new SkynetApiClient({
+            TOKEN: auth?.user?.access_token,
+            BASE: process.env.NEXT_PUBLIC_BACKEND_URL,
+          })
+        );
+      }, 600000);
+
+      return () => {
+        clearInterval(dataInterval);
+      };
     }
   }, [auth]);
 
