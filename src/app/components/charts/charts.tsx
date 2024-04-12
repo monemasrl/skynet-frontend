@@ -100,7 +100,7 @@ function Charts() {
         {!loadingFusman ? (
           <GaugeChartWithData
             fusman={fusman?.prod_total}
-            text="Fusman totali"
+            text="Ordini"
             errorFusman={errorFusman}
             limit={[200, 300, 400]}
           />
@@ -113,9 +113,9 @@ function Charts() {
         {!loadingFusman ? (
           <GaugeChartWithData
             fusman={fusman?.prod_int}
-            text="Fusman interne"
+            text="Fusman Totali"
             errorFusman={errorFusman}
-            limit={[100, 150, 200]}
+            limit={[100, 200, 300]}
           />
         ) : (
           <Loading />
@@ -161,14 +161,14 @@ function Charts() {
               />
             )}
             {timeIntervalChart === GraphScaleEnum.YEARLY && (
-              <LineChartWithData
+              <BarChartWithData
                 datiLinea={datiLinea}
                 timeIntervalChart={timeIntervalChart || GraphScaleEnum.DAILY}
               />
             )}
             <div className={style.charts__title}>
               <div className={style.charts__title__tipoDati}>
-                <div className={style.title}>Volume di vendite: </div>
+                <div className={style.title}>Ordini: </div>
                 {datiTemporali.map((item) => {
                   return (
                     <span
@@ -216,7 +216,7 @@ function Charts() {
               />
             )}
             {timeIntervalChartProduction === GraphScaleEnum.YEARLY && (
-              <LineChartWithData
+              <BarChartWithData
                 datiLinea={datiLineaProduction}
                 timeIntervalChart={
                   timeIntervalChartProduction || GraphScaleEnum.DAILY
@@ -225,7 +225,7 @@ function Charts() {
             )}
             <div className={style.charts__title}>
               <div className={style.charts__title__tipoDati}>
-                <div className={style.title}>Volume Produzione: </div>
+                <div className={style.title}>Produzione: </div>
                 {datiTemporali.map((item) => {
                   return (
                     <span

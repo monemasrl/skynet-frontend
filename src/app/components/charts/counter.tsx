@@ -44,7 +44,7 @@ export default function Counter({
     <motion.div
       className={style.current}
       initial={{ opacity: 0, width: 0, height: 0 }}
-      animate={{ opacity: 1, width: 200, height: 200 }}
+      animate={{ opacity: 1, width: 188, height: 188 }}
       transition={{ duration: 0.5 }}
     >
       <div className={style.current__dato}>

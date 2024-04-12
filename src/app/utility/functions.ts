@@ -1,6 +1,8 @@
 
-import moment from "moment";
 
+import 'moment/locale/it'
+
+const moment = require('moment')
 
 function handleSearchParamsUrl(
     term: number | undefined,
@@ -30,13 +32,14 @@ async function getDataByTerm(url: string, term: string | undefined, query: strin
  */
 
 const formatXAxis = (tickFormat: string, timeIntervalChart: string) => {
+
     if (timeIntervalChart === "weekly")
-        return moment(tickFormat).format("DD/MM");
+        return moment(tickFormat).locale("it_IT").format("dddd/MM");
     if (timeIntervalChart === "monthly")
-        return moment(tickFormat).format("DD/MM");
+        return moment(tickFormat).locale("it_IT").format("DD/MM");
     if (timeIntervalChart === "yearly")
-        return moment(tickFormat).format("MM-YY");
-    return moment(tickFormat).format("YYYY-MM-DD HH:mm:ss");
+        return moment(tickFormat).locale("it_IT").format("MM-YY");
+    return moment(tickFormat).locale("it_IT").format("YYYY-MM-DD HH:mm:ss");
 };
 
 export {

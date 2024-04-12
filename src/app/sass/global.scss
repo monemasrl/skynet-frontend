@@ -100,3 +100,11 @@ header {
   cursor: pointer;
   transition: background-color 0.3s;
 }
+.recharts-legend-wrapper {
+  top: 33px !important;
+  background: #ffffff;
+  right: 14px;
+  width: auto !important;
+  padding: 5px 0 5px 9px;
+  left: auto !important;
+}

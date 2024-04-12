@@ -7,7 +7,7 @@ const GaugeComponent = dynamic(() => import("react-gauge-component"), {
   ssr: false,
 });
 
-function emoji(numero: number | undefined, limit: number[] | undefined) {
+function emoji(numero: number | undefined, limit: number[]) {
   if (numero != undefined && limit && numero < limit[0])
     return (
       <span>
@@ -37,7 +37,7 @@ function GaugeChartWithData({
   fusman?: number;
   text?: string;
   errorFusman?: boolean;
-  limit?: number[];
+  limit: number[];
 }) {
   if (!errorFusman) {
     return (
@@ -50,22 +50,22 @@ function GaugeChartWithData({
             padding: 0.005,
             subArcs: [
               {
-                limit: limit ? limit[0] : 200,
+                limit: limit[0],
                 color: "rgb(224 54 76)",
               },
               {
-                limit: limit ? limit[1] : 300,
+                limit: limit[1],
                 color: "rgb(229, 121, 75)",
               },
               {
-                limit: limit ? limit[2] : 400,
+                limit: fusman && fusman > limit[2] ? fusman : limit[2],
                 color: "rgb(69, 171, 60)",
               },
             ],
             // gradient: true,
           }}
           pointer={{
-            type: "arrow",
+            type: "blob",
             elastic: true,
             animationDelay: 0,
           }}
@@ -87,14 +87,15 @@ function GaugeChartWithData({
                   fill: "black",
                 },
               },
-              ticks: [
-                { value: limit && limit[0] },
-                { value: limit && limit[1] },
-              ],
+              ticks: [{ value: limit[0] }, { value: limit[1] }],
             },
           }}
           minValue={0}
-          maxValue={limit ? limit[2] : 400}
+          maxValue={
+            fusman && fusman > limit[2]
+              ? Math.ceil(fusman / 100) * 100
+              : limit[2]
+          }
           value={fusman || 0}
         />
         <div className={style.charts__title}>{text ? text : ""}</div>

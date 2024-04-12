@@ -41,7 +41,7 @@ function BarChartWithData({
 
           <YAxis fontSize={10} />
 
-          <Legend />
+          <Legend verticalAlign="top" />
         </BarChart>
       </ResponsiveContainer>
     );
