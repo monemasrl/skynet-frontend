@@ -46,7 +46,7 @@ function BarChartWithData({
       </ResponsiveContainer>
     );
   } else {
-    return <Error text="non ci sono dati per anno" />;
+    return <Error text="non ci sono dati " />;
   }
 }
 export default BarChartWithData;
