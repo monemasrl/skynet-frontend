@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-
+import Link from "next/link";
 function MainError() {
   const router = useRouter();
   return (
@@ -33,7 +33,7 @@ function Error({ text }: { text?: string | undefined }) {
       </div>
       <div>{text || "PROBLEMA NEL CARICAMENTO DEI DATI"}</div>
       <div>
-        <a href="/">Riprova</a>
+        <Link href="/">Riprova</Link>
       </div>
     </div>
   );
