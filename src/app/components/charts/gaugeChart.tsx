@@ -8,19 +8,19 @@ const GaugeComponent = dynamic(() => import("react-gauge-component"), {
 });
 
 function emoji(numero: number | undefined, limit: number[]) {
-  if (numero != undefined && limit && numero < limit[0])
+  if (numero != undefined && limit && numero <= limit[0])
     return (
       <span>
         <BsEmojiFrown style={{ color: "#e96666" }} />
       </span>
     );
-  if (numero && limit && numero > limit[0] && numero < limit[1])
+  if (numero && limit && numero > limit[0] && numero <= limit[1])
     return (
       <span>
         <BsEmojiSmile style={{ color: "rgb(229, 121, 75)" }} />
       </span>
     );
-  if (numero && limit && numero > limit[1] && numero < limit[2])
+  if (numero && limit && numero > limit[1] && numero <= limit[2])
     return (
       <span>
         <BsEmojiSunglasses style={{ color: "rgb(69, 171, 60)" }} />
