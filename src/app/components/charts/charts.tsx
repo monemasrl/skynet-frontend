@@ -8,12 +8,12 @@ import { context } from "../../context/context";
 import Loading from "../loading/loading";
 import BarChartWithData from "./barChart";
 import GaugeChartWithData from "./gaugeChart";
-import LineChartWithData from "./lineChart";
 import SingleChart from "./singleChart";
 import style from "./style.module.scss";
 import { Error } from "../error/error";
 import Counter from "./counter";
-
+import { VscRefresh } from "react-icons/vsc";
+import Link from "next/link";
 const datiTemporali = [
   {
     title: "Settimana",
@@ -96,6 +96,21 @@ function Charts() {
   console.log(fusman, "fusman");
   return (
     <section className={style.charts}>
+      <div className={style.refreshData}>
+        <Link
+          className={"btn-generic"}
+          style={{
+            fontSize: ".9rem",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "5px",
+          }}
+          href={"/"}
+        >
+          <VscRefresh style={{ fontSize: "1.3rem" }} />
+          <span>Refresh</span>
+        </Link>
+      </div>
       <SingleChart span={"small"}>
         {!loadingFusman ? (
           <GaugeChartWithData

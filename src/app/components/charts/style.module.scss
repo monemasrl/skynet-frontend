@@ -8,7 +8,15 @@
   @media #{$large} {
     grid-template-columns: repeat(4, 1fr);
   }
-
+  .refreshData {
+    grid-column: span 20;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 1rem;
+    @media #{$large} {
+      grid-column: span 4;
+    }
+  }
   &__icon {
     position: absolute;
     right: -1.5rem;
