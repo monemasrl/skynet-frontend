@@ -114,7 +114,7 @@ function Charts() {
       <SingleChart span={"small"}>
         {!loadingFusman ? (
           <GaugeChartWithData
-            fusman={fusman?.prod_total}
+            fusman={fusman?.sales}
             text="Ordini"
             errorFusman={errorFusman}
             limit={[200, 300, 400]}
@@ -127,7 +127,7 @@ function Charts() {
       <SingleChart span={"small"}>
         {!loadingFusman ? (
           <GaugeChartWithData
-            fusman={fusman?.prod_int}
+            fusman={fusman?.prod_total}
             text="Fusman Totali"
             errorFusman={errorFusman}
             limit={[100, 200, 300]}
