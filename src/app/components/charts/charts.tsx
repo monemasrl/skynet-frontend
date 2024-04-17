@@ -108,7 +108,7 @@ function Charts() {
           href={"/"}
         >
           <VscRefresh style={{ fontSize: "1.3rem" }} />
-          <span>Refresh</span>
+          <span>Ricarica</span>
         </Link>
       </div>
       <SingleChart span={"small"}>
