@@ -27,8 +27,8 @@ function StatoCommessa({
    */
 
   const datiStato: tDatiStato = {
-    sospesa: {
-      stato: "sospesa",
+    annullata: {
+      stato: "annullata",
       colore: "red",
     },
     lavorazione: {
@@ -59,7 +59,7 @@ function StatoCommessa({
     return (
       <div className={style.stato}>
         <span
-          style={{ backgroundColor: COLORI[datiStato[stato].colore] }}
+          style={{ backgroundColor: stato && COLORI[datiStato[stato].colore] }}
         ></span>
         <span>{datiStato[stato].stato}</span>
       </div>
@@ -69,8 +69,8 @@ function StatoCommessa({
       <motion.div
         className={style.statoBtn}
         style={{
-          color: coloreContrasto(datiStato[stato].colore),
-          backgroundColor: COLORI[datiStato[stato].colore],
+          color: stato && coloreContrasto(datiStato[stato].colore),
+          backgroundColor: stato && COLORI[datiStato[stato].colore],
         }}
         initial={{ width: "42px" }}
         animate={{ width: "100%" }}

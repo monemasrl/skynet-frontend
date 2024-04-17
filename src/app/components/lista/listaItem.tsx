@@ -31,6 +31,7 @@ function ListaItem({
     stato: dataItem.status,
     code: dataItem.code,
   };
+
   return (
     dataLine && (
       <li
