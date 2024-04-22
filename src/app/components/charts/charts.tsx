@@ -123,7 +123,13 @@ function Charts() {
           <Loading />
         )}
       </SingleChart>
-
+      <SingleChart span={"small"}>
+        {!loadingFusman ? (
+          <Counter value={fusman?.current || 0} direction="up" />
+        ) : (
+          <Loading />
+        )}
+      </SingleChart>
       <SingleChart span={"small"}>
         {!loadingFusman ? (
           <GaugeChartWithData
@@ -144,14 +150,6 @@ function Charts() {
             errorFusman={errorFusman}
             limit={[100, 150, 200]}
           />
-        ) : (
-          <Loading />
-        )}
-      </SingleChart>
-
-      <SingleChart span={"small"}>
-        {!loadingFusman ? (
-          <Counter value={fusman?.current || 0} direction="up" />
         ) : (
           <Loading />
         )}

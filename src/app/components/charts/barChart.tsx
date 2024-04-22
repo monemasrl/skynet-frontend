@@ -20,7 +20,6 @@ function BarChartWithData({
   datiLinea: GetGraphResponse | undefined;
   timeIntervalChart: string;
 }) {
-  console.log(datiLinea, "datiLinea");
   if (datiLinea?.data?.length && datiLinea.data.length > 0) {
     return (
       <ResponsiveContainer>
