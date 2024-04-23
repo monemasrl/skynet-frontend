@@ -76,10 +76,16 @@ export default function Counter({
               fill: "#000",
             }}
           >
-            <tspan x={x} y={y} dx={dx} dy={dy} style={{ fontSize: ".7rem" }}>
+            <tspan
+              x={x}
+              y={y}
+              dx={dx}
+              dy={dy}
+              style={{ fontSize: ".6rem", fontWeight: "bold" }}
+            >
               {Math.round(dataEntry.percentage) + "%"}{" "}
             </tspan>
-            <tspan x={x + 1} y={y + 7} dx={dx} dy={dy}>
+            <tspan x={x + 2} y={y + 7} dx={dx} dy={dy}>
               {dataEntry.title}
             </tspan>
           </text>
