@@ -1,6 +1,6 @@
 import { useEffect, useRef } from "react";
-import { useInView, useMotionValue, useSpring, motion } from "framer-motion";
-import { PieChart, pieChartDefaultProps } from "react-minimal-pie-chart";
+import { useInView, useMotionValue, useSpring } from "framer-motion";
+import { PieChart } from "react-minimal-pie-chart";
 import style from "./style.module.scss";
 /**
  *
@@ -26,8 +26,8 @@ export default function Counter({
 
   const dataMock = [
     { title: "SOSPESE", value: 10, color: "#e8475c" },
-    { title: "INTERNE", value: 15, color: "#7dbc77" },
-    { title: "ESTERNE", value: 20, color: "#aad2a6" },
+    { title: "INTERNE", value: 437, color: "#7dbc77" },
+    { title: "ESTERNE", value: 188, color: "#aad2a6" },
   ];
   useEffect(() => {
     if (isInView) {
@@ -56,7 +56,7 @@ export default function Counter({
 
       <PieChart
         data={dataMock}
-        labelPosition={60}
+        labelPosition={70}
         lineWidth={20}
         radius={50}
         rounded
@@ -71,7 +71,7 @@ export default function Counter({
             dominant-baseline="central"
             text-anchor="middle"
             style={{
-              fontSize: "6px",
+              fontSize: "4px",
               fontFamily: "sans-serif",
               fill: "#000",
             }}
@@ -85,7 +85,13 @@ export default function Counter({
             >
               {Math.round(dataEntry.percentage) + "%"}{" "}
             </tspan>
-            <tspan x={x + 2} y={y + 7} dx={dx} dy={dy}>
+            <tspan
+              x={x}
+              y={y + 7}
+              dx={dx}
+              dy={dy}
+              style={{ fontWeight: "bold" }}
+            >
               {dataEntry.title}
             </tspan>
           </text>

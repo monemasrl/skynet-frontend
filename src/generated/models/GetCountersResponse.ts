@@ -7,6 +7,9 @@ export type GetCountersResponse = {
     prod_int: number;
     prod_ext: number;
     prod_total: number;
+    fusman_wait: number;
+    fusman_int: number;
+    fusman_ext: number;
     current: number;
     wait: number;
 };

@@ -3,6 +3,8 @@
 /* tslint:disable */
 /* eslint-disable */
 export type CreateOrderResponse = {
+    order_id?: number;
+    deleted?: boolean;
     customer_id: string;
     customer_name: string;
     brand_code: (string | null);
@@ -25,6 +27,7 @@ export type CreateOrderResponse = {
     sotto_commessa_descrizione: (string | null);
     jobs: string;
     status: (string | null);
+    sub_status: (string | null);
     updated_at?: string;
     created_at?: string;
 };
