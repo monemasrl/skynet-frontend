@@ -140,7 +140,7 @@ function Charts() {
       <SingleChart span={"small"}>
         {!loadingFusman ? (
           <GaugeChartWithData
-            fusman={fusman?.fusman_int}
+            fusman={fusman?.prod_int}
             text="Fusman Interne"
             errorFusman={errorFusman}
             limit={[100, 200, 300]}
