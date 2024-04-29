@@ -27,11 +27,11 @@ function ListaItem({
     sub_code: dataItem.sub_code,
     cliente: dataItem.brand_code || "",
     sede_operativa: dataItem.address,
-    data_documento: dataItem.data_consegna || "",
+    data_documento: dataItem.data_documento || "",
     stato: dataItem.status,
     code: dataItem.code,
   };
-
+  console.log(dataLine, "dataLine");
   return (
     dataLine && (
       <li
