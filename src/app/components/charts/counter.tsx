@@ -25,7 +25,7 @@ export default function Counter({
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const dataMock = [
-    { title: "SOSPESE", value: 10, color: "#e8475c" },
+    { title: "SOSPESE", value: 0, color: "#e8475c" },
     { title: "INTERNE", value: 437, color: "#7dbc77" },
     { title: "ESTERNE", value: 188, color: "#aad2a6" },
   ];
