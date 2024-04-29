@@ -14,6 +14,7 @@ import { Error } from "../error/error";
 import Counter from "./counter";
 import { VscRefresh } from "react-icons/vsc";
 import Link from "next/link";
+
 const datiTemporali = [
   {
     title: "Settimana",
@@ -125,7 +126,13 @@ function Charts() {
       </SingleChart>
       <SingleChart span={"small"}>
         {!loadingFusman ? (
-          <Counter value={fusman?.current || 0} direction="up" />
+          <Counter
+            int={fusman?.fusman_int}
+            ext={fusman?.fusman_ext}
+            wait={fusman?.fusman_wait}
+            value={fusman?.current || 0}
+            direction="up"
+          />
         ) : (
           <Loading />
         )}

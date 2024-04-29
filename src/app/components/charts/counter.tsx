@@ -8,11 +8,17 @@ import style from "./style.module.scss";
  * @param root0.value
  */
 export default function Counter({
+  int,
+  ext,
+  wait,
   value,
   direction = "up",
 }: {
   value: number;
   direction?: "up" | "down";
+  int?: number;
+  ext?: number;
+  wait?: number;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
   const motionValue = useMotionValue(
@@ -25,9 +31,9 @@ export default function Counter({
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   const dataMock = [
-    { title: "SOSPESE", value: 0, color: "#e8475c" },
-    { title: "INTERNE", value: 437, color: "#7dbc77" },
-    { title: "ESTERNE", value: 188, color: "#aad2a6" },
+    { title: "SOSPESE", value: wait ? wait : 0, color: "#e8475c" },
+    { title: "INTERNE", value: int ? int : 0, color: "#7dbc77" },
+    { title: "ESTERNE", value: ext ? ext : 0, color: "#aad2a6" },
   ];
   useEffect(() => {
     if (isInView) {
