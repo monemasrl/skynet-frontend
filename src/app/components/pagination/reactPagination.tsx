@@ -33,7 +33,7 @@ function Items({
           {currentItems?.map((item) => {
             return (
               <ListaItem
-                key={item.code}
+                key={item.cliente_codice}
                 dataItem={item}
                 currentListItem={currentListItem}
                 setCurrentListItem={setCurrentListItem}

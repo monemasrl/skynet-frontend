@@ -27,7 +27,7 @@ import PaginatedItems from "../pagination/reactPagination";
  */
 function ListaAziende(dati: OrderType[] | null): (string | null)[] | null {
   if (dati) {
-    const aziende = dati.map((item) => item.customer_name);
+    const aziende = dati.map((item) => item.cliente_nome);
     return Array.from(new Set(aziende));
   }
   return null;

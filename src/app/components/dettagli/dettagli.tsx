@@ -13,7 +13,7 @@ function Dettagli() {
   const data = contextData?.commessa;
 
   return contextData?.commessa ? (
-    <div className={style.dettagli} key={data?.code}>
+    <div className={style.dettagli} key={data?.cliente_codice}>
       <header>
         <div className={style.dettagli__boxtitle}>
           <motion.span
