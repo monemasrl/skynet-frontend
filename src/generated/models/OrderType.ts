@@ -2,27 +2,21 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CarrierTypeEnum } from './CarrierTypeEnum';
-import type { ConsegnaEnum } from './ConsegnaEnum';
 import type { Job } from './Job';
 import type { StatusEnum } from './StatusEnum';
 export type OrderType = {
-    customer_id: string;
-    customer_name: string;
-    brand_code: (string | null);
-    address: (string | null);
-    code: string;
-    sub_code: string;
+    cliente_codice: string;
+    cliente_nome: string;
+    brand_codice: (string | null);
+    sede_operativa: (string | null);
+    codice: string;
     data_consegna: (string | null);
     data_documento: string;
-    modalita_consegna: (ConsegnaEnum | null);
-    carrier_type: (CarrierTypeEnum | null);
-    carrier_name: (string | null);
+    modalita_consegna: (string | null);
     tracking_number: (string | null);
-    external_production: boolean;
     ddt: (string | null);
-    sotto_commessa_descrizione: string;
-    status: StatusEnum;
+    descrizione: string;
+    stato: StatusEnum;
     jobs: Array<Job>;
 };
 

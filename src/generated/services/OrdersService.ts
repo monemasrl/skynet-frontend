@@ -2,8 +2,6 @@
 /* istanbul ignore file */
 /* tslint:disable */
 /* eslint-disable */
-import type { CreateOrderRequest } from '../models/CreateOrderRequest';
-import type { CreateOrderResponse } from '../models/CreateOrderResponse';
 import type { GetOrdersResponse } from '../models/GetOrdersResponse';
 import type { CancelablePromise } from '../core/CancelablePromise';
 import type { BaseHttpRequest } from '../core/BaseHttpRequest';
@@ -39,15 +37,19 @@ export class OrdersService {
     public listOrders({
         page,
         size = 10,
-        status,
+        statuses,
         archived,
         q,
+        orderBy,
+        orderDirection,
     }: {
         page?: number,
         size?: number,
-        status?: (string | null),
+        statuses?: (string | null),
         archived?: (boolean | null),
         q?: (string | null),
+        orderBy?: (string | null),
+        orderDirection?: (string | null),
     }): CancelablePromise<GetOrdersResponse> {
         return this.httpRequest.request({
             method: 'GET',
@@ -55,31 +57,12 @@ export class OrdersService {
             query: {
                 'page': page,
                 'size': size,
-                'status': status,
+                'statuses': statuses,
                 'archived': archived,
                 'q': q,
+                'order_by': orderBy,
+                'order_direction': orderDirection,
             },
-            errors: {
-                404: `Not found`,
-                422: `Validation Error`,
-            },
-        });
-    }
-    /**
-     * Create Order
-     * @returns CreateOrderResponse Successful Response
-     * @throws ApiError
-     */
-    public createOrder({
-        requestBody,
-    }: {
-        requestBody: CreateOrderRequest,
-    }): CancelablePromise<CreateOrderResponse> {
-        return this.httpRequest.request({
-            method: 'POST',
-            url: '/orders/',
-            body: requestBody,
-            mediaType: 'application/json',
             errors: {
                 404: `Not found`,
                 422: `Validation Error`,

@@ -10,12 +10,7 @@ export { CancelablePromise, CancelError } from './core/CancelablePromise';
 export { OpenAPI } from './core/OpenAPI';
 export type { OpenAPIConfig } from './core/OpenAPI';
 
-export { CarrierTypeEnum } from './models/CarrierTypeEnum';
 export type { Company } from './models/Company';
-export { ConsegnaEnum } from './models/ConsegnaEnum';
-export type { CreateOrderItem } from './models/CreateOrderItem';
-export type { CreateOrderRequest } from './models/CreateOrderRequest';
-export type { CreateOrderResponse } from './models/CreateOrderResponse';
 export type { Datum } from './models/Datum';
 export type { GetCompaniesResponse } from './models/GetCompaniesResponse';
 export type { GetCountersResponse } from './models/GetCountersResponse';

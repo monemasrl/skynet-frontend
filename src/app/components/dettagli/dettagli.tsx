@@ -1,11 +1,11 @@
-import style from "./style.module.scss";
-import StatoCommessa from "../stato/stato";
+import { MEDIAQUERIES } from "@/app/utility/variabili";
+import useMediaQuery from "@mui/material/useMediaQuery";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 import { context } from "../../context/context";
-import useMediaQuery from "@mui/material/useMediaQuery";
-import { MEDIAQUERIES } from "@/app/utility/variabili";
 import Loading from "../loading/loading";
+import StatoCommessa from "../stato/stato";
+import style from "./style.module.scss";
 
 function Dettagli() {
   const isLandscape = useMediaQuery(MEDIAQUERIES.landscape);
@@ -28,10 +28,10 @@ function Dettagli() {
             animate={{ opacity: 1, y: !isLandscape ? 0 : 0 }}
             transition={{ ease: "easeIn", duration: 0.5 }}
           >
-            {data?.code}
+            {data?.codice}
           </motion.h2>
         </div>
-        <StatoCommessa stato={data?.status} tipo="button" />
+        <StatoCommessa stato={data?.stato} tipo="button" />
       </header>
       <main>
         <motion.section
@@ -42,19 +42,19 @@ function Dettagli() {
           <div className={style.dettagli__col1}>
             <div className={style.dettagli__dato}>
               <span>Cliente</span>
-              {data?.customer_name}
+              {data?.cliente_nome}
             </div>
           </div>
           <div className={style.dettagli__col1}>
             <div className={style.dettagli__dato}>
               <span>Sede Operativa</span>
-              {data?.address}
+              {data?.sede_operativa}
             </div>
           </div>
           <div className={style.dettagli__col2}>
             <div className={style.dettagli__dato}>
               <span>Descrizione Sotto Commessa</span>
-              {data?.sotto_commessa_descrizione}
+              {data?.descrizione}
             </div>
           </div>
           <div className={style.dettagli__col1}>
