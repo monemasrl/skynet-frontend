@@ -87,6 +87,7 @@ function MainListContainer({
     filtro,
     size,
     orderBy,
+    orderDirection,
   ]);
 
   return erroreDati ? (
@@ -103,6 +104,9 @@ function MainListContainer({
         setIsArchived={contextData?.setIsArchived}
         size={size}
         setSize={setSize}
+        orderDirection={orderDirection}
+        setOrderDirection={setOrderDirection}
+        orderBy={orderBy}
       />
       <PaginatedItems
         itemsPerPage={size}
@@ -116,6 +120,8 @@ function MainListContainer({
         setIsCommessaSelectedByList={contextData?.setIsCommessaSelectedByList}
         orderBy={orderBy}
         setOrderBy={setOrderBy}
+        orderDirection={orderDirection}
+        setOrderDirection={setOrderDirection}
       />
     </div>
   );

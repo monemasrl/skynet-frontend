@@ -6,6 +6,7 @@ import style from "./style.module.scss";
 import { HiLibrary } from "react-icons/hi";
 import { motion } from "framer-motion";
 import { CiSquareChevRight } from "react-icons/ci";
+import DataOrder from "./dataOrder";
 
 function Switcher({
   setIsArchive,
@@ -39,15 +40,13 @@ function Switcher({
 }
 
 function ListaNav({
-  filtro,
   setFiltro,
-  ricerca,
-  setRicerca,
   setCurrentPage,
-  isArchived,
+  orderBy,
   setIsArchived,
   size,
   setSize,
+  setOrderDirection,
 }: {
   filtro: string | null | undefined;
   setFiltro: Dispatch<SetStateAction<string | undefined>> | undefined;
@@ -58,6 +57,9 @@ function ListaNav({
   setIsArchived?: Dispatch<SetStateAction<boolean>>;
   size: number;
   setSize: Dispatch<SetStateAction<number>>;
+  orderDirection?: string;
+  setOrderDirection?: Dispatch<SetStateAction<string>>;
+  orderBy?: string | null;
 }) {
   const [getSize, setGetSize] = useState<number>(size);
 
@@ -75,21 +77,24 @@ function ListaNav({
         <Select setCurrentPage={setCurrentPage} setFiltro={setFiltro} />
         <Ricerca setCurrentPage={setCurrentPage} setRicerca={setFiltro} />
       </nav>
-      <div className={style.listaNav__size}>
-        <span>N°: </span>
-        <input
-          className={style.sizeInput}
-          type="text"
-          placeholder={size.toString()}
-          onChange={(e) => setGetSize(Number(e.target.value))}
-        />
-        <button
-          className={style.listaNav__button}
-          onClick={() => setSize(getSize)}
-        >
-          {" "}
-          <CiSquareChevRight />
-        </button>
+      <div className={style.listaNav__parametriLista}>
+        <div className={style.listaNav__size}>
+          <span>N°</span>{" "}
+          <input
+            className={style.sizeInput}
+            type="text"
+            placeholder={size.toString()}
+            onChange={(e) => setGetSize(Number(e.target.value))}
+          />
+          <button
+            className={style.listaNav__button}
+            onClick={() => setSize(getSize)}
+          >
+            {" "}
+            <CiSquareChevRight />
+          </button>
+        </div>
+        <DataOrder orderBy={orderBy} setOrderDirection={setOrderDirection} />
       </div>
     </section>
   );
