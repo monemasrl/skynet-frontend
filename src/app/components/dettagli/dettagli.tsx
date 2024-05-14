@@ -53,7 +53,7 @@ function Dettagli() {
           </div>
           <div className={style.dettagli__col2}>
             <div className={style.dettagli__dato}>
-              <span>Descrizione Sotto Commessa</span>
+              <span>Descrizione Commessa</span>
               {data?.descrizione}
             </div>
           </div>

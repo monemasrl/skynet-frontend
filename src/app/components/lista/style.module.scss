@@ -80,6 +80,22 @@
       font-size: 1.5rem;
     }
   }
+  &__button {
+    font-size: 1.7rem;
+    top: 9px;
+    margin-left: 0.3rem;
+    position: relative;
+    color: $darkGrey;
+  }
+  &__size {
+    display: inline-block;
+
+    margin: 1rem 0.5rem 0 0.5rem;
+    input {
+      width: 30px;
+      text-align: center;
+    }
+  }
 }
 .boxSwitch {
   display: flex;

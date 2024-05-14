@@ -5,6 +5,7 @@ import Select from "../select/select";
 import style from "./style.module.scss";
 import { HiLibrary } from "react-icons/hi";
 import { motion } from "framer-motion";
+import { CiSquareChevRight } from "react-icons/ci";
 
 function Switcher({
   setIsArchive,
@@ -45,6 +46,8 @@ function ListaNav({
   setCurrentPage,
   isArchived,
   setIsArchived,
+  size,
+  setSize,
 }: {
   filtro: string | null | undefined;
   setFiltro: Dispatch<SetStateAction<string | undefined>> | undefined;
@@ -53,7 +56,11 @@ function ListaNav({
   setCurrentPage?: Dispatch<SetStateAction<number>>;
   isArchived?: boolean;
   setIsArchived?: Dispatch<SetStateAction<boolean>>;
+  size: number;
+  setSize: Dispatch<SetStateAction<number>>;
 }) {
+  const [getSize, setGetSize] = useState<number>(size);
+
   return (
     <section className={style.listaNav}>
       <header>
@@ -63,10 +70,27 @@ function ListaNav({
           setCurrentPage={setCurrentPage}
         />
       </header>
+
       <nav>
         <Select setCurrentPage={setCurrentPage} setFiltro={setFiltro} />
         <Ricerca setCurrentPage={setCurrentPage} setRicerca={setFiltro} />
       </nav>
+      <div className={style.listaNav__size}>
+        <span>N°: </span>
+        <input
+          className={style.sizeInput}
+          type="text"
+          placeholder={size.toString()}
+          onChange={(e) => setGetSize(Number(e.target.value))}
+        />
+        <button
+          className={style.listaNav__button}
+          onClick={() => setSize(getSize)}
+        >
+          {" "}
+          <CiSquareChevRight />
+        </button>
+      </div>
     </section>
   );
 }

@@ -9,6 +9,7 @@ export type OrderType = {
     cliente_nome: string;
     brand_codice: (string | null);
     sede_operativa: (string | null);
+    code: string | null;
     codice: string;
     data_consegna: (string | null);
     data_documento: string;

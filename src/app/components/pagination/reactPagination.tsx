@@ -31,9 +31,10 @@ function Items({
         <ul>
           <ListaHeader />
           {currentItems?.map((item) => {
+            console.log(item, "item");
             return (
               <ListaItem
-                key={item.cliente_codice}
+                key={item.code}
                 dataItem={item}
                 currentListItem={currentListItem}
                 setCurrentListItem={setCurrentListItem}

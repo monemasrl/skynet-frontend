@@ -76,7 +76,7 @@ function MainListContainer({
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [contextData?.apiClient, contextData?.isArchived, page, filtro]);
+  }, [contextData?.apiClient, contextData?.isArchived, page, filtro, size]);
 
   return erroreDati ? (
     <MainError />
@@ -90,6 +90,8 @@ function MainListContainer({
         setCurrentPage={setPage}
         isArchived={contextData?.isArchived}
         setIsArchived={contextData?.setIsArchived}
+        size={size}
+        setSize={setSize}
       />
       <PaginatedItems
         itemsPerPage={size}
