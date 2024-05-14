@@ -2,7 +2,7 @@
 import ListaNav from "./listaNav";
 import style from "./style.module.scss";
 import { OrderType } from "@/generated";
-import { type tContext } from "../../type/type";
+import { type tContext, typeOrderBy } from "../../type/type";
 import {
   type Dispatch,
   type SetStateAction,
@@ -25,6 +25,7 @@ import PaginatedItems from "../pagination/reactPagination";
  * @param isOpenDrawer
  * stato di apertura del drawer
  */
+
 function ListaAziende(dati: OrderType[] | null): (string | null)[] | null {
   if (dati) {
     const aziende = dati.map((item) => item.cliente_nome);
@@ -49,7 +50,10 @@ function MainListContainer({
   const [size, setSize] = useState<number>(10);
   const [page, setPage] = useState<number>(1);
   const [total, setTotal] = useState<number>(0);
-  const [orderBy, setOrderBy] = useState<string | null>(null);
+  const [orderBy, setOrderBy] = useState<typeOrderBy | null>({
+    orderBy: null,
+    direction: "asc",
+  });
   const [orderDirection, setOrderDirection] = useState<string>("asc");
   const filtro = contextData?.filtro;
   const setFiltro: Dispatch<SetStateAction<string | undefined>> | undefined =
@@ -63,8 +67,8 @@ function MainListContainer({
           size: size,
           q: filtro,
           archived: contextData?.isArchived,
-          orderBy: orderBy,
-          orderDirection: orderDirection,
+          orderBy: orderBy?.orderBy,
+          orderDirection: orderBy?.direction,
         })
         .then((data) => {
           setOrders(data.orders);
@@ -105,8 +109,6 @@ function MainListContainer({
         size={size}
         setSize={setSize}
         orderDirection={orderDirection}
-        setOrderDirection={setOrderDirection}
-        orderBy={orderBy}
       />
       <PaginatedItems
         itemsPerPage={size}
@@ -120,8 +122,6 @@ function MainListContainer({
         setIsCommessaSelectedByList={contextData?.setIsCommessaSelectedByList}
         orderBy={orderBy}
         setOrderBy={setOrderBy}
-        orderDirection={orderDirection}
-        setOrderDirection={setOrderDirection}
       />
     </div>
   );

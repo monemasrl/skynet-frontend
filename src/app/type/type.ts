@@ -48,5 +48,9 @@ type tContext = {
     isCommessaSelectedByList: boolean;
     setIsCommessaSelectedByList: Dispatch<SetStateAction<boolean>>;
 };
+type typeOrderBy = {
+    orderBy: string | null;
+    direction: string;
+};
 
-export type { cliente, tColori, tContext, tDatiCommessa };
+export type { cliente, tColori, tContext, tDatiCommessa, typeOrderBy };

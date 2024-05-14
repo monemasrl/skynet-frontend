@@ -6,7 +6,6 @@ import style from "./style.module.scss";
 import { HiLibrary } from "react-icons/hi";
 import { motion } from "framer-motion";
 import { CiSquareChevRight } from "react-icons/ci";
-import DataOrder from "./dataOrder";
 
 function Switcher({
   setIsArchive,
@@ -42,11 +41,9 @@ function Switcher({
 function ListaNav({
   setFiltro,
   setCurrentPage,
-  orderBy,
   setIsArchived,
   size,
   setSize,
-  setOrderDirection,
 }: {
   filtro: string | null | undefined;
   setFiltro: Dispatch<SetStateAction<string | undefined>> | undefined;
@@ -58,8 +55,6 @@ function ListaNav({
   size: number;
   setSize: Dispatch<SetStateAction<number>>;
   orderDirection?: string;
-  setOrderDirection?: Dispatch<SetStateAction<string>>;
-  orderBy?: string | null;
 }) {
   const [getSize, setGetSize] = useState<number>(size);
 
@@ -94,7 +89,6 @@ function ListaNav({
             <CiSquareChevRight />
           </button>
         </div>
-        <DataOrder orderBy={orderBy} setOrderDirection={setOrderDirection} />
       </div>
     </section>
   );
