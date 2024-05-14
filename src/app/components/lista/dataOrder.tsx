@@ -11,7 +11,7 @@ function DataOrder({
   if (orderBy === null) return null;
   return (
     <div className={style.dataOrder}>
-      <span>Ordina </span>{" "}
+      <span>Ordina:</span>
       <div
         className={style.dataOrder__asc}
         onClick={() => setOrderDirection && setOrderDirection("asc")}
