@@ -31,6 +31,7 @@
       padding-bottom: 0.5rem;
       margin-bottom: 0.2rem;
       cursor: auto;
+
       @media #{$phone} {
         display: none;
       }
@@ -39,6 +40,9 @@
           text-align: right;
           width: 100%;
         }
+      }
+      > div {
+        cursor: pointer;
       }
     }
     &__active {
@@ -85,15 +89,20 @@
     top: 9px;
     margin-left: 0.3rem;
     position: relative;
-    color: $darkGrey;
+    color: rgb(134, 134, 134);
   }
   &__size {
     display: inline-block;
-
+    font-weight: bold;
+    font-size: 0.9rem;
     margin: 1rem 0.5rem 0 0.5rem;
     input {
       width: 30px;
       text-align: center;
+      border: 0;
+      border-radius: 5px;
+      background-color: $lightGrey;
+      padding: 5px;
     }
   }
 }

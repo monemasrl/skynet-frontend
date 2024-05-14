@@ -49,6 +49,8 @@ function MainListContainer({
   const [size, setSize] = useState<number>(10);
   const [page, setPage] = useState<number>(1);
   const [total, setTotal] = useState<number>(0);
+  const [orderBy, setOrderBy] = useState<string | null>(null);
+  const [orderDirection, setOrderDirection] = useState<string>("asc");
   const filtro = contextData?.filtro;
   const setFiltro: Dispatch<SetStateAction<string | undefined>> | undefined =
     contextData?.setFiltro;
@@ -61,6 +63,8 @@ function MainListContainer({
           size: size,
           q: filtro,
           archived: contextData?.isArchived,
+          orderBy: orderBy,
+          orderDirection: orderDirection,
         })
         .then((data) => {
           setOrders(data.orders);
@@ -76,7 +80,14 @@ function MainListContainer({
         });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [contextData?.apiClient, contextData?.isArchived, page, filtro, size]);
+  }, [
+    contextData?.apiClient,
+    contextData?.isArchived,
+    page,
+    filtro,
+    size,
+    orderBy,
+  ]);
 
   return erroreDati ? (
     <MainError />
@@ -103,6 +114,8 @@ function MainListContainer({
         setIsOpenDrawer={setIsOpenDrawer}
         isOpenDrawer={isOpenDrawer}
         setIsCommessaSelectedByList={contextData?.setIsCommessaSelectedByList}
+        orderBy={orderBy}
+        setOrderBy={setOrderBy}
       />
     </div>
   );

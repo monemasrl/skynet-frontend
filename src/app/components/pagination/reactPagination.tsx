@@ -13,6 +13,8 @@ function Items({
   setIsOpenDrawer,
   isOpenDrawer,
   setIsCommessaSelectedByList,
+  orderBy,
+  setOrderBy,
 }: {
   currentItems: OrderType[] | null | undefined;
   currentListItem: OrderType | null | undefined;
@@ -24,12 +26,14 @@ function Items({
   setIsCommessaSelectedByList:
     | React.Dispatch<React.SetStateAction<boolean>>
     | undefined;
+  orderBy: string | null;
+  setOrderBy: React.Dispatch<React.SetStateAction<string | null>>;
 }) {
   return (
     <>
       {currentItems ? (
         <ul>
-          <ListaHeader />
+          <ListaHeader orderBy={orderBy} setOrderBy={setOrderBy} />
           {currentItems?.map((item) => {
             console.log(item, "item");
             return (
@@ -62,6 +66,8 @@ function PaginatedItems({
   setIsOpenDrawer,
   isOpenDrawer,
   setIsCommessaSelectedByList,
+  orderBy,
+  setOrderBy,
 }: {
   itemsPerPage: number;
   dati: OrderType[] | undefined;
@@ -76,6 +82,8 @@ function PaginatedItems({
   setIsCommessaSelectedByList:
     | React.Dispatch<React.SetStateAction<boolean>>
     | undefined;
+  orderBy: string | null;
+  setOrderBy: React.Dispatch<React.SetStateAction<string | null>>;
 }) {
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
@@ -100,6 +108,8 @@ function PaginatedItems({
         setIsOpenDrawer={setIsOpenDrawer}
         isOpenDrawer={isOpenDrawer}
         setIsCommessaSelectedByList={setIsCommessaSelectedByList}
+        orderBy={orderBy}
+        setOrderBy={setOrderBy}
       />
       <ReactPaginate
         breakLabel="..."

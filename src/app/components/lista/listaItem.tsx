@@ -3,6 +3,7 @@ import type { Dispatch, SetStateAction } from "react";
 import { type cliente } from "../../type/type";
 import StatoCommessa from "../stato/stato";
 import style from "./style.module.scss";
+import DateObject from "react-date-object";
 
 function ListaItem({
   dataItem,
@@ -32,6 +33,7 @@ function ListaItem({
     code: dataItem.codice,
   };
   console.log(dataLine, "dataLine");
+  const dataCommessa: DateObject = new DateObject(dataLine.data_documento);
   return (
     dataLine && (
       <li
@@ -48,7 +50,7 @@ function ListaItem({
       >
         <div>{dataLine.sub_code}</div>
         <div>{dataLine.customer_name}</div>
-        <div>{dataLine.data_documento}</div>
+        <div>{dataCommessa.format("DD-MM-YYYY") || "Data non disponibile"}</div>
         <StatoCommessa stato={dataLine.stato} tipo={"lista"} />
       </li>
     )

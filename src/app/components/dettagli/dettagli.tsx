@@ -6,12 +6,19 @@ import { context } from "../../context/context";
 import Loading from "../loading/loading";
 import StatoCommessa from "../stato/stato";
 import style from "./style.module.scss";
+import DateObject from "react-date-object";
 
 function Dettagli() {
   const isLandscape = useMediaQuery(MEDIAQUERIES.landscape);
   const contextData = useContext(context);
   const data = contextData?.commessa;
-
+  const dataCommessa: DateObject | undefined | null = data?.data_documento
+    ? new DateObject(data.data_documento)
+    : null;
+  const dataConsegna: DateObject | undefined | null = data?.data_consegna
+    ? new DateObject(data.data_consegna)
+    : null;
+  console.log(data, "data");
   return contextData?.commessa ? (
     <div className={style.dettagli} key={data?.cliente_codice}>
       <header>
@@ -60,13 +67,13 @@ function Dettagli() {
           <div className={style.dettagli__col1}>
             <div className={style.dettagli__dato}>
               <span>Data Consegna</span>
-              {data?.data_consegna}
+              {dataConsegna?.format("DD-MM-YYYY") || "Data non disponibile"}
             </div>
           </div>
           <div className={style.dettagli__col1}>
             <div className={style.dettagli__dato}>
               <span>Data Documento</span>
-              {data?.data_documento}
+              {dataCommessa?.format("DD-MM-YYYY") || "Data non disponibile"}
             </div>
           </div>
           <div className={style.dettagli__col1}>
