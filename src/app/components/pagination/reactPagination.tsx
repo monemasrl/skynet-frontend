@@ -6,6 +6,7 @@ import ListaItem from "../lista/listaItem";
 import Loading from "../loading/loading";
 import ListaHeader from "../lista/listaHeader";
 import { typeOrderBy } from "@/app/type/type";
+
 function Items({
   currentItems,
   currentListItem,
@@ -35,10 +36,9 @@ function Items({
         <ul>
           <ListaHeader orderBy={orderBy} setOrderBy={setOrderBy} />
           {currentItems?.map((item) => {
-            console.log(item, "item");
             return (
               <ListaItem
-                key={item.code}
+                key={item.codice}
                 dataItem={item}
                 currentListItem={currentListItem}
                 setCurrentListItem={setCurrentListItem}

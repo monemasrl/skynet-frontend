@@ -47,8 +47,8 @@ function ContextProvider({ children }: { children: React.ReactNode }): any {
         clearInterval(dataInterval);
       };
     }
-  }, [auth]);
-
+  }, [auth, refreshData]);
+  console.log(refreshData, "refreshData");
   const value: tContext = {
     filtro,
     setFiltro,
@@ -63,6 +63,7 @@ function ContextProvider({ children }: { children: React.ReactNode }): any {
     apiClient,
     isCommessaSelectedByList,
     setIsCommessaSelectedByList,
+    setRefreshData,
   };
 
   return <context.Provider value={value}>{children}</context.Provider>;
