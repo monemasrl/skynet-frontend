@@ -2,13 +2,17 @@
   display: flex;
   gap: 5rem;
   margin-top: 3rem;
-  @media #{$landscape} {
+  @media #{$desktop} {
     display: block;
   }
 
   &__lista {
     position: relative;
     flex: 0 1 700px;
+    min-width: 650px;
+    @media #{$desktop} {
+      min-width: 100%;
+    }
     h1 {
       margin: 0 0 0 0.3rem;
     }
