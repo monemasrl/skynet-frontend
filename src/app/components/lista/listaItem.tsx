@@ -1,9 +1,9 @@
 import { OrderType } from "@/generated";
 import type { Dispatch, SetStateAction } from "react";
+import DateObject from "react-date-object";
 import { type cliente } from "../../type/type";
 import StatoCommessa from "../stato/stato";
 import style from "./style.module.scss";
-import DateObject from "react-date-object";
 
 function ListaItem({
   dataItem,
@@ -25,7 +25,7 @@ function ListaItem({
   const dataLine: cliente = {
     customer_id: dataItem.cliente_codice,
     customer_name: dataItem.cliente_nome,
-    sub_code: dataItem.cliente_codice,
+    sub_code: dataItem.codice,
     cliente: dataItem.brand_codice || "",
     sede_operativa: dataItem.sede_operativa || "",
     data_documento: dataItem.data_documento || "",
