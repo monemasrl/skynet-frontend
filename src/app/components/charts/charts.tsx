@@ -98,7 +98,7 @@ function Charts() {
   return (
     <section className={style.charts}>
       <div className={style.refreshData}>
-        <Link
+        <div
           className={"btn-generic"}
           style={{
             fontSize: ".9rem",
@@ -106,11 +106,13 @@ function Charts() {
             alignItems: "center",
             gap: "5px",
           }}
-          href={"/"}
+          onClick={() => {
+            contextData?.setRefreshData(true);
+          }}
         >
           <VscRefresh style={{ fontSize: "1.3rem" }} />
           <span>Ricarica</span>
-        </Link>
+        </div>
       </div>
       <SingleChart span={"small"}>
         {!loadingFusman ? (

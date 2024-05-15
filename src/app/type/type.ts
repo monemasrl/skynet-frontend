@@ -47,6 +47,7 @@ type tContext = {
     apiClient: SkynetApiClient | undefined;
     isCommessaSelectedByList: boolean;
     setIsCommessaSelectedByList: Dispatch<SetStateAction<boolean>>;
+    setRefreshData: Dispatch<SetStateAction<boolean>>;
 };
 type typeOrderBy = {
     orderBy: string | null;

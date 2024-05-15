@@ -18,9 +18,9 @@ function Dettagli() {
   const dataConsegna: DateObject | undefined | null = data?.data_consegna
     ? new DateObject(data.data_consegna)
     : null;
-  console.log(data, "data");
+
   return contextData?.commessa ? (
-    <div className={style.dettagli} key={data?.cliente_codice}>
+    <div className={style.dettagli} key={data?.codice}>
       <header>
         <div className={style.dettagli__boxtitle}>
           <motion.span
@@ -67,13 +67,13 @@ function Dettagli() {
           <div className={style.dettagli__col1}>
             <div className={style.dettagli__dato}>
               <span>Data Consegna</span>
-              {dataConsegna?.format("DD-MM-YYYY") || "Data non disponibile"}
+              {dataConsegna?.format("DD/MM/YYYY")}
             </div>
           </div>
           <div className={style.dettagli__col1}>
             <div className={style.dettagli__dato}>
               <span>Data Documento</span>
-              {dataCommessa?.format("DD-MM-YYYY") || "Data non disponibile"}
+              {dataCommessa?.format("DD/MM/YYYY")}
             </div>
           </div>
           <div className={style.dettagli__col1}>

@@ -16,7 +16,7 @@ import { useAuth } from "react-oidc-context";
 
 function Home() {
   //const isPhone = useMediaQuery(MEDIAQUERIES.phone);
-  const isLandscape = useMediaQuery(MEDIAQUERIES.landscape);
+  const isLandscape = useMediaQuery(MEDIAQUERIES.desktop);
   const [drawerDettagli, setDrawerDettagli] = useState(false);
   const [drawerCharts, setDrawerCharts] = useState(false);
   const [userRole, setUserRole] = useState<string>("");

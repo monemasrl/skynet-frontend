@@ -32,11 +32,13 @@ function ListaItem({
     stato: dataItem.stato,
     code: dataItem.codice,
   };
-  console.log(dataLine, "dataLine");
+
   const dataCommessa: DateObject = new DateObject(dataLine.data_documento);
+
   return (
     dataLine && (
       <li
+        key={dataLine.code}
         className={`${style.lista__listaItem} ${
           currentListItem?.codice === dataLine.code
             ? style.lista__listaItem__active
@@ -50,7 +52,7 @@ function ListaItem({
       >
         <div>{dataLine.sub_code}</div>
         <div>{dataLine.customer_name}</div>
-        <div>{dataCommessa.format("DD-MM-YYYY") || "Data non disponibile"}</div>
+        <div>{dataCommessa.format("DD/MM/YYYY")}</div>
         <StatoCommessa stato={dataLine.stato} tipo={"lista"} />
       </li>
     )

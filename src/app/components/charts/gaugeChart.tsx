@@ -20,7 +20,7 @@ function emoji(numero: number | undefined, limit: number[]) {
         <BsEmojiSmile style={{ color: "rgb(229, 121, 75)" }} />
       </span>
     );
-  if (numero && limit && numero > limit[1] && numero <= limit[2])
+  if (numero && limit && numero > limit[1])
     return (
       <span>
         <BsEmojiSunglasses style={{ color: "rgb(69, 171, 60)" }} />

@@ -3,7 +3,7 @@
   border-radius: 30px;
   padding: 40px;
 
-  @media #{$landscape} {
+  @media #{$desktop} {
     box-shadow: 0px 0px 0px rgba(0, 0, 0, 0);
     padding: 0px;
   }
@@ -16,6 +16,9 @@
   &__col1 {
     display: inline-block;
     grid-column: span 2;
+    @media #{$phone} {
+      grid-column: span 6;
+    }
   }
   &__col2 {
     display: inline-block;
@@ -28,7 +31,9 @@
   &__dato {
     font-size: $size-dettaglio-value;
     line-height: 1;
-
+    @media #{$phone} {
+      font-size: 1.1rem;
+    }
     span {
       font-size: $size-dettaglio-label;
       display: block;
@@ -39,15 +44,24 @@
   }
   &__jobs {
     display: inline-flex;
-    max-width: 300px;
+
     width: 100%;
     background-color: $lightGrey;
-    padding: 1.5rem;
+    padding: 1rem;
     @media #{$large} {
       max-width: 100%;
     }
     ul {
       width: 100%;
+      column-count: 2;
+      column-gap: 32px;
+      text-transform: uppercase;
+      @media #{$laptop} {
+        column-count: 1;
+      }
+      @media #{$phone} {
+        column-count: 1;
+      }
       li {
         display: flex;
         font-size: $size-list-jobs;
@@ -75,17 +89,18 @@
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
+    flex-direction: column;
     gap: 2rem;
     @media #{$large} {
       flex-direction: column;
     }
     section {
-      max-width: 390px;
+      width: 100%;
       display: grid;
       justify-items: start;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-      grid-column-gap: 10px;
-      grid-row-gap: 2.5rem;
+      grid-template-columns: repeat(6, 1fr);
+      grid-column-gap: 17px;
+      grid-row-gap: 1.2rem;
     }
   }
 }

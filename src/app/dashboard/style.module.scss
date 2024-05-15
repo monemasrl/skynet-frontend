@@ -2,20 +2,24 @@
   display: flex;
   gap: 5rem;
   margin-top: 3rem;
-  @media #{$landscape} {
+  @media #{$desktop} {
     display: block;
   }
 
   &__lista {
     position: relative;
     flex: 0 1 700px;
+    min-width: 650px;
+    @media #{$desktop} {
+      min-width: 100%;
+    }
     h1 {
       margin: 0 0 0 0.3rem;
     }
   }
   &__dettagli {
     flex: 0 1 840px;
-    margin-top: 2rem;
+    margin-top: 7rem;
     @media #{$large} {
       flex: 0 1 500px;
     }

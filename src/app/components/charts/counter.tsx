@@ -74,8 +74,8 @@ export default function Counter({
             y={y}
             dx={dx}
             dy={dy}
-            dominant-baseline="central"
-            text-anchor="middle"
+            dominantBaseline="central"
+            textAnchor="middle"
             style={{
               fontSize: "4px",
               fontFamily: "sans-serif",

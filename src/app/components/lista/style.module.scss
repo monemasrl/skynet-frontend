@@ -20,10 +20,11 @@
     }
     @media #{$tablet} {
       grid-template-columns: 1fr 1fr 1fr 80px;
+      font-size: $size-list/1.4;
     }
     @media #{$phone} {
       grid-template-columns: 60px 1fr 1fr 20px;
-      font-size: $size-list/1.4;
+      font-weight: 500;
     }
 
     &__header {
@@ -32,7 +33,13 @@
       padding-bottom: 0.5rem;
       margin-bottom: 0.2rem;
       cursor: auto;
-
+      font-size: 1.05rem;
+      @media #{$tablet} {
+        font-size: 0.9rem;
+      }
+      @media #{$phone} {
+        font-size: 0.8rem;
+      }
       &__stato {
         @media #{$tablet} {
           text-align: right;
@@ -41,9 +48,7 @@
       }
       > div {
         cursor: pointer;
-        display: flex;
-        justify-content: space-between;
-        gap: 3px;
+        position: relative;
         width: 100%;
         &:hover {
           .dataOrder {
@@ -172,5 +177,13 @@
     cursor: pointer;
     font-size: 1.2rem;
     height: 19px;
+  }
+}
+.FrecceListaOrdinamento {
+  position: absolute;
+  top: 4px;
+  right: 0;
+  @media #{$tablet} {
+    display: none;
   }
 }
