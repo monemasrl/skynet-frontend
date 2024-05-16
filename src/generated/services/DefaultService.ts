@@ -17,48 +17,4 @@ export class DefaultService {
             url: '/',
         });
     }
-    /**
-     * Health
-     * @returns any Successful Response
-     * @throws ApiError
-     */
-    public healthHealthGet(): CancelablePromise<any> {
-        return this.httpRequest.request({
-            method: 'GET',
-            url: '/health',
-        });
-    }
-    /**
-     * Version
-     * @returns any Successful Response
-     * @throws ApiError
-     */
-    public versionVersionGet(): CancelablePromise<any> {
-        return this.httpRequest.request({
-            method: 'GET',
-            url: '/version',
-        });
-    }
-    /**
-     * Info
-     * @returns any Successful Response
-     * @throws ApiError
-     */
-    public infoInfoGet(): CancelablePromise<any> {
-        return this.httpRequest.request({
-            method: 'GET',
-            url: '/info',
-        });
-    }
-    /**
-     * Exception
-     * @returns any Successful Response
-     * @throws ApiError
-     */
-    public exceptionExceptionGet(): CancelablePromise<any> {
-        return this.httpRequest.request({
-            method: 'GET',
-            url: '/exception',
-        });
-    }
 }
