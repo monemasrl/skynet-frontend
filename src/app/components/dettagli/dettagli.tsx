@@ -2,11 +2,11 @@ import { MEDIAQUERIES } from "@/app/utility/variabili";
 import useMediaQuery from "@mui/material/useMediaQuery";
 import { motion } from "framer-motion";
 import { useContext } from "react";
+import DateObject from "react-date-object";
 import { context } from "../../context/context";
 import Loading from "../loading/loading";
 import StatoCommessa from "../stato/stato";
 import style from "./style.module.scss";
-import DateObject from "react-date-object";
 
 function Dettagli() {
   const isLandscape = useMediaQuery(MEDIAQUERIES.landscape);
@@ -17,6 +17,9 @@ function Dettagli() {
     : null;
   const dataConsegna: DateObject | undefined | null = data?.data_consegna
     ? new DateObject(data.data_consegna)
+    : null;
+  const dataPrevista: DateObject | undefined | null = data?.data_consegna_prevista
+    ? new DateObject(data.data_consegna_prevista)
     : null;
 
   return contextData?.commessa ? (
@@ -46,13 +49,20 @@ function Dettagli() {
           animate={{ opacity: 1, y: !isLandscape ? 0 : 0 }}
           transition={{ duration: 0.5, ease: "easeIn" }}
         >
-          <div className={style.dettagli__col1}>
+          <div className={style.dettagli__col2}>
             <div className={style.dettagli__dato}>
               <span>Cliente</span>
               {data?.cliente_nome}
             </div>
           </div>
+
           <div className={style.dettagli__col1}>
+            <div className={style.dettagli__dato}>
+              <span>Data Documento</span>
+              {dataCommessa?.format("DD/MM/YYYY")}
+            </div>
+          </div>
+          <div className={style.dettagli__col2}>
             <div className={style.dettagli__dato}>
               <span>Sede Operativa</span>
               {data?.sede_operativa}
@@ -64,18 +74,14 @@ function Dettagli() {
               {data?.descrizione}
             </div>
           </div>
+
+
           <div className={style.dettagli__col1}>
             <div className={style.dettagli__dato}>
-              <span>Data Consegna</span>
-              {dataConsegna?.format("DD/MM/YYYY")}
+              <span></span>
             </div>
           </div>
-          <div className={style.dettagli__col1}>
-            <div className={style.dettagli__dato}>
-              <span>Data Documento</span>
-              {dataCommessa?.format("DD/MM/YYYY")}
-            </div>
-          </div>
+
           <div className={style.dettagli__col1}>
             <div className={style.dettagli__dato}>
               <span>Modalità di consegna</span>
@@ -84,16 +90,29 @@ function Dettagli() {
           </div>
           <div className={style.dettagli__col1}>
             <div className={style.dettagli__dato}>
+              <span>Data Prevista</span>
+              {dataPrevista?.format("DD/MM/YYYY")}
+            </div>
+          </div>
+          <div className={style.dettagli__col1}>
+            <div className={style.dettagli__dato}>
+              <span>Data Consegna</span>
+              {dataConsegna?.format("DD/MM/YYYY")}
+            </div>
+          </div>
+          <div className={style.dettagli__col2}>
+            <div className={style.dettagli__dato}>
               <span>DDT</span>
               {data?.ddt}
             </div>
           </div>
-          <div className={style.dettagli__col2}>
+          <div className={style.dettagli__col1}>
             <div className={style.dettagli__dato}>
               <span>Tracking Number</span>
               {data?.tracking_number}
             </div>
           </div>
+
         </motion.section>
         <motion.aside
           className={style.dettagli__jobs}

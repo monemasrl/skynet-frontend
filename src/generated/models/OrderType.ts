@@ -5,6 +5,7 @@
 import type { Job } from './Job';
 import type { StatusEnum } from './StatusEnum';
 export type OrderType = {
+    id: number;
     cliente_codice: string;
     cliente_nome: string;
     brand_codice: (string | null);
