@@ -30,7 +30,7 @@ function ListaItem({
     sede_operativa: dataItem.sede_operativa || "",
     data_documento: dataItem.data_documento || "",
     stato: dataItem.stato,
-    code: dataItem.codice,
+    code: dataItem.id,
   };
 
   const dataCommessa: DateObject = new DateObject(dataLine.data_documento);
@@ -40,7 +40,7 @@ function ListaItem({
       <li
         key={dataLine.code}
         className={`${style.lista__listaItem} ${
-          currentListItem?.codice === dataLine.code
+          currentListItem?.id === dataLine.code
             ? style.lista__listaItem__active
             : ""
         }`}

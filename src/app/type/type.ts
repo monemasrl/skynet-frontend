@@ -10,7 +10,7 @@ type cliente = {
     sede_operativa: string | null,
     data_documento: string,
     stato: StatusEnum | undefined
-    code: string
+    code: number
 }
 
 type tColori = {
