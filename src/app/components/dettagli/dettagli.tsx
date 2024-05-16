@@ -18,9 +18,10 @@ function Dettagli() {
   const dataConsegna: DateObject | undefined | null = data?.data_consegna
     ? new DateObject(data.data_consegna)
     : null;
-  const dataPrevista: DateObject | undefined | null = data?.data_consegna_prevista
-    ? new DateObject(data.data_consegna_prevista)
-    : null;
+  const dataPrevista: DateObject | undefined | null =
+    data?.data_consegna_prevista
+      ? new DateObject(data.data_consegna_prevista)
+      : null;
 
   return contextData?.commessa ? (
     <div className={style.dettagli} key={data?.codice}>
@@ -56,7 +57,7 @@ function Dettagli() {
             </div>
           </div>
 
-          <div className={style.dettagli__col1}>
+          <div className={style.dettagli__col2}>
             <div className={style.dettagli__dato}>
               <span>Data Documento</span>
               {dataCommessa?.format("DD/MM/YYYY")}
@@ -75,20 +76,7 @@ function Dettagli() {
             </div>
           </div>
 
-
-          <div className={style.dettagli__col1}>
-            <div className={style.dettagli__dato}>
-              <span></span>
-            </div>
-          </div>
-
-          <div className={style.dettagli__col1}>
-            <div className={style.dettagli__dato}>
-              <span>Modalità di consegna</span>
-              {data?.modalita_consegna}
-            </div>
-          </div>
-          <div className={style.dettagli__col1}>
+          <div className={style.dettagli__col2}>
             <div className={style.dettagli__dato}>
               <span>Data Prevista</span>
               {dataPrevista?.format("DD/MM/YYYY")}
@@ -98,6 +86,12 @@ function Dettagli() {
             <div className={style.dettagli__dato}>
               <span>Data Consegna</span>
               {dataConsegna?.format("DD/MM/YYYY")}
+            </div>
+          </div>
+          <div className={style.dettagli__col2}>
+            <div className={style.dettagli__dato}>
+              <span>Modalità di consegna</span>
+              {data?.modalita_consegna}
             </div>
           </div>
           <div className={style.dettagli__col2}>
@@ -112,7 +106,6 @@ function Dettagli() {
               {data?.tracking_number}
             </div>
           </div>
-
         </motion.section>
         <motion.aside
           className={style.dettagli__jobs}

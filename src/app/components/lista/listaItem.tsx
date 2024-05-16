@@ -50,7 +50,7 @@ function ListaItem({
           setIsOpenDrawer && setIsOpenDrawer(true);
         }}
       >
-        <div>{dataLine.sub_code}</div>
+        <div style={{ wordBreak: "break-all" }}>{dataLine.sub_code}</div>
         <div>{dataLine.customer_name}</div>
         <div>{dataCommessa.format("DD/MM/YYYY")}</div>
         <StatoCommessa stato={dataLine.stato} tipo={"lista"} />
