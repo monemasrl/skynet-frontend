@@ -32,7 +32,7 @@ function ListaItem({
     stato: dataItem.stato,
     code: dataItem.id,
   };
-
+  console.log(dataLine.code, "codice");
   const dataCommessa: DateObject = new DateObject(dataLine.data_documento);
 
   return (
