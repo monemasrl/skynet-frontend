@@ -50,33 +50,33 @@ function Dettagli() {
           animate={{ opacity: 1, y: !isLandscape ? 0 : 0 }}
           transition={{ duration: 0.5, ease: "easeIn" }}
         >
-          <div className={style.dettagli__col2}>
+          <div className={style.dettagli__col1}>
             <div className={style.dettagli__dato}>
               <span>Cliente</span>
               {data?.cliente_nome}
             </div>
           </div>
 
-          <div className={style.dettagli__col2}>
+          <div className={style.dettagli__col1}>
             <div className={style.dettagli__dato}>
               <span>Data Documento</span>
               {dataCommessa?.format("DD/MM/YYYY")}
             </div>
           </div>
-          <div className={style.dettagli__col2}>
+          <div className={style.dettagli__col1}>
             <div className={style.dettagli__dato}>
               <span>Sede Operativa</span>
               {data?.sede_operativa}
             </div>
           </div>
-          <div className={style.dettagli__col2}>
+          <div className={style.dettagli__col1}>
             <div className={style.dettagli__dato}>
               <span>Descrizione Commessa</span>
               {data?.descrizione}
             </div>
           </div>
 
-          <div className={style.dettagli__col2}>
+          <div className={style.dettagli__col1}>
             <div className={style.dettagli__dato}>
               <span>Data Prevista</span>
               {dataPrevista?.format("DD/MM/YYYY")}
@@ -84,20 +84,21 @@ function Dettagli() {
           </div>
           <div className={style.dettagli__col1}>
             <div className={style.dettagli__dato}>
+              <span>DDT</span>
+              {data?.ddt}
+            </div>
+          </div>
+
+          <div className={style.dettagli__col1}>
+            <div className={style.dettagli__dato}>
               <span>Data Consegna</span>
               {dataConsegna?.format("DD/MM/YYYY")}
             </div>
           </div>
-          <div className={style.dettagli__col2}>
+          <div className={style.dettagli__col1}>
             <div className={style.dettagli__dato}>
               <span>Modalità di consegna</span>
               {data?.modalita_consegna}
-            </div>
-          </div>
-          <div className={style.dettagli__col2}>
-            <div className={style.dettagli__dato}>
-              <span>DDT</span>
-              {data?.ddt}
             </div>
           </div>
           <div className={style.dettagli__col1}>
