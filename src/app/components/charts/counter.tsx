@@ -1,5 +1,5 @@
-import { useEffect, useRef } from "react";
-import { useInView, useMotionValue, useSpring } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { PieChart } from "react-minimal-pie-chart";
 import style from "./style.module.scss";
 /**
@@ -7,61 +7,70 @@ import style from "./style.module.scss";
  * @param root0
  * @param root0.value
  */
+type tDataValue = {
+  tipo: string;
+  value: number;
+};
 export default function Counter({
   int,
   ext,
   wait,
   value,
-  direction = "up",
 }: {
   value: number;
-  direction?: "up" | "down";
   int?: number;
   ext?: number;
   wait?: number;
 }) {
-  const ref = useRef<HTMLSpanElement>(null);
-  const motionValue = useMotionValue(
-    direction === "down" ? value : value / 1.05
-  );
-  const springValue = useSpring(motionValue, {
-    damping: 10,
-    stiffness: 10,
-  });
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
-  const dataMock = [
-    { title: "SOSPESE", value: wait ? wait : 0, color: "#e8475c" },
-    { title: "INTERNE", value: int ? int : 0, color: "#7dbc77" },
-    { title: "ESTERNE", value: ext ? ext : 0, color: "#aad2a6" },
-  ];
-  useEffect(() => {
-    if (isInView) {
-      motionValue.set(direction === "down" ? 0 : value);
+  function dataMock() {
+    const data = [
+      { title: "SOSPESE", value: wait ? wait : 0, color: "#e8475c" },
+      { title: "INTERNE", value: int ? int : 0, color: "#7dbc77" },
+      { title: "ESTERNE", value: ext ? ext : 0, color: "#aad2a6" },
+    ];
+    if (wait === 0) {
+      return [
+        { title: "INTERNE", value: int ? int : 0, color: "#7dbc77" },
+        { title: "ESTERNE", value: ext ? ext : 0, color: "#aad2a6" },
+      ];
     }
-  }, [motionValue, isInView]);
-
-  useEffect(
-    () =>
-      springValue.on("change", (latest) => {
-        if (ref.current) {
-          ref.current.textContent = Intl.NumberFormat("en-US").format(
-            latest.toFixed(0)
-          );
-        }
-      }),
-    [springValue]
-  );
+    return data;
+  }
+  const [dataValue, setDataValue] = useState<tDataValue | null>(null);
 
   return (
     <div className={style.current}>
       <div className={style.current__dato}>
-        <span ref={ref} />
-        <div className={style.current__dato__title}>In lavorazione</div>
+        <AnimatePresence>
+          {dataValue && (
+            <motion.div
+              className={style.current__dato__value}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <span>{dataValue.value}</span>
+              <div className={style.current__dato__title}>{dataValue.tipo}</div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+        <AnimatePresence>
+          {!dataValue && (
+            <motion.div
+              className={style.current__dato__value}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+            >
+              <span>{value}</span>
+              <div className={style.current__dato__title}>In lavorazione</div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
 
       <PieChart
-        data={dataMock}
+        data={dataMock()}
         labelPosition={70}
         lineWidth={20}
         radius={50}
@@ -81,6 +90,12 @@ export default function Counter({
               fontFamily: "sans-serif",
               fill: "#000",
             }}
+            onPointerOver={(e) => {
+              setDataValue({ tipo: dataEntry.title, value: dataEntry.value });
+            }}
+            onPointerOut={() => {
+              setDataValue(null);
+            }}
           >
             <tspan
               x={x}
@@ -89,7 +104,7 @@ export default function Counter({
               dy={dy}
               style={{ fontSize: ".6rem", fontWeight: "bold" }}
             >
-              {Math.round(dataEntry.percentage) + "%"}{" "}
+              {Math.round(dataEntry.percentage) + "%"}
             </tspan>
             <tspan
               x={x}

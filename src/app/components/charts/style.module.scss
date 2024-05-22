@@ -118,7 +118,18 @@
     font-weight: 700;
     text-align: center;
     position: absolute;
+    width: 100%;
+    top: 40%;
+
     color: rgb(0, 0, 0);
+    &__value {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin-right: auto;
+      margin-left: auto;
+    }
     &__title {
       font-size: 0.7rem;
       font-weight: 500;

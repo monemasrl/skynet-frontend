@@ -94,7 +94,7 @@ function Charts() {
         });
     }
   }, [contextData?.apiClient, timeIntervalChartProduction]);
-  console.log(fusman, "fusman");
+
   return (
     <section className={style.charts}>
       <div className={style.refreshData}>
@@ -133,7 +133,6 @@ function Charts() {
             ext={fusman?.fusman_ext}
             wait={fusman?.fusman_wait}
             value={fusman?.current || 0}
-            direction="up"
           />
         ) : (
           <Loading />
