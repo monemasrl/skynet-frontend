@@ -31,6 +31,7 @@
   &__dato {
     font-size: $size-dettaglio-value;
     line-height: 1;
+    word-break: break-word;
     @media #{$phone} {
       font-size: 1.1rem;
     }
