@@ -16,12 +16,11 @@ const AuthProviderHoc = ({
       setIsWindow(true);
     }
     setOidcConfig({
-      authority: "https://auth.service.monema.dev",
+      authority: process.env.NEXT_PUBLIC_BACKEND_URL,
       client_id: "skynet",
       redirect_uri: process.env.NEXT_PUBLIC_REDIRECT_URI,
       scope: "openid profile email microprofile-jwt",
-      metadataUrl:
-        "https://auth.service.monema.dev/realms/skynet/.well-known/openid-configuration",
+      metadataUrl: process.env.NEXT_PUBLIC_METADATA_URL,
       post_logout_redirect_uri:
         process.env.NEXT_PUBLIC_POST_LOGOUT_REDIRECT_URI,
       userStore: new WebStorageStateStore({ store: window.localStorage }),

@@ -22,7 +22,6 @@ function ContextProvider({ children }: { children: React.ReactNode }): any {
     useState<boolean>(false);
   const [refreshData, setRefreshData] = useState<boolean>(false);
 
-  console.log(refreshData, "refreshData");
   const auth = useAuth();
   useEffect(() => {
     if (auth?.user?.access_token) {
@@ -48,7 +47,7 @@ function ContextProvider({ children }: { children: React.ReactNode }): any {
       };
     }
   }, [auth, refreshData]);
-  console.log(refreshData, "refreshData");
+
   const value: tContext = {
     filtro,
     setFiltro,
