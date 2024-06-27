@@ -16,6 +16,10 @@ export type OrderType = {
     data_documento: string;
     modalita_consegna: (string | null);
     tracking_number: (string | null);
+    destinatario: (string | null);
+    destinatario_descrizione: (string | null);
+    referente: (string | null);
+    referente_descrizione: (string | null);
     ddt: (string | null);
     descrizione: string;
     stato: StatusEnum;
