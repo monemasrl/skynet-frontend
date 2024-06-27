@@ -93,13 +93,13 @@ function Dettagli() {
               {" "}
               <div className={style.dettagli__col1}>
                 <div className={style.dettagli__dato}>
-                  <span>Destinatario Descrizione</span>
+                  <span>Descrizione Destinatario</span>
                   {data?.destinatario_descrizione}
                 </div>
               </div>
               <div className={style.dettagli__col2}>
                 <div className={style.dettagli__dato}>
-                  <span>Referente Descrizione</span>
+                  <span>Descrizione Referente</span>
                   {data?.referente_descrizione}
                 </div>
               </div>
