@@ -68,6 +68,8 @@
     gap: 3rem;
     margin-top: 0.5rem;
     @media #{$tablet} {
+      flex-direction: column;
+      gap: 0;
       margin: 1rem 0;
     }
     .subnav {
@@ -92,8 +94,13 @@
   header {
     display: flex;
     justify-content: space-between;
+    margin-bottom: 1rem;
     h1 {
       font-size: 1.5rem;
+    }
+    .wrapperUi {
+      display: flex;
+      gap: 2rem;
     }
   }
   &__button {
@@ -185,5 +192,15 @@
   right: 0;
   @media #{$tablet} {
     display: none;
+  }
+}
+.resetBtn {
+  font-size: 0.8rem;
+  background-color: $lightGrey;
+  padding: 0 9px;
+  border-radius: 5px;
+  svg {
+    position: relative;
+    top: 2px;
   }
 }

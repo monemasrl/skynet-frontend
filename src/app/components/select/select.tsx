@@ -1,7 +1,7 @@
 import { Company } from "@/generated";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Dispatch, SetStateAction } from "react";
-import { useContext, useEffect, useState } from "react";
+import { use, useContext, useEffect, useState } from "react";
 import { FaAngleDown } from "react-icons/fa";
 import { type DefaultSession } from "next-auth";
 
@@ -14,9 +14,11 @@ import { context } from "../../context/context";
 import style from "./style.module.scss";
 
 function Select({
+  filtro,
   setFiltro,
   setCurrentPage,
 }: {
+  filtro: string | null | undefined;
   setFiltro: Dispatch<SetStateAction<string | undefined>> | undefined;
   setCurrentPage?: Dispatch<SetStateAction<number>>;
 }) {
@@ -28,8 +30,8 @@ function Select({
   const contextData = useContext(context);
 
   useEffect(() => {
-    /* Fetch dei dati */
     if (contextData?.apiClient) {
+      /* Fetch dei dati */
       contextData.apiClient.companies
         .listCompanies({
           q: cercaAziende && cercaAziende?.length > 0 ? cercaAziende : "",
@@ -44,6 +46,16 @@ function Select({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [contextData?.apiClient, cercaAziende, contextData?.isArchived]);
 
+  useEffect(() => {
+    if (filtro === "") {
+      setValue("Azienda");
+      setOpen(false);
+      setCercaAziende("");
+    }
+    console.log(filtro, "filtro");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [filtro]);
+  console.log(filtro, "filtro");
   return (
     <div
       className={style.select}

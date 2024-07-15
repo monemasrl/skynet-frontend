@@ -53,7 +53,7 @@ function Home() {
     <Suspense>
       <ContextProvider>
         <>
-          <NavBar setDrawerCharts={setDrawerCharts} role={userRole} />
+          <NavBar />
           <motion.div
             initial={{
               y: 10,

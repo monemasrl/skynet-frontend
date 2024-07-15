@@ -3,22 +3,11 @@ import Image from "next/image";
 import style from "./style.module.scss";
 import { RxHamburgerMenu } from "react-icons/rx";
 import Drawer from "../drawer/drawer";
-import { Dispatch, SetStateAction, useState } from "react";
-
-import { TbDashboard } from "react-icons/tb";
-import { useMediaQuery } from "@mui/material";
-import { MEDIAQUERIES } from "@/app/utility/variabili";
+import { useState } from "react";
 import { FaRegUserCircle } from "react-icons/fa";
 import { useAuth } from "react-oidc-context";
-import { redirect } from "next/navigation";
 
-function NavBar({
-  setDrawerCharts,
-  role,
-}: {
-  setDrawerCharts: Dispatch<SetStateAction<boolean>>;
-  role: string;
-}) {
+function NavBar() {
   const [drawer, setDrawer] = useState(false);
   //const isLandscape = useMediaQuery(MEDIAQUERIES.landscape);
   const sessionData = useAuth();
