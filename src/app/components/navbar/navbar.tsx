@@ -16,9 +16,9 @@ function NavBar() {
     <>
       <div className={style.poweredBy}>
         <Image
-          src="/images/pbskynet.png"
-          width={137}
-          height={46}
+          src="/images/logoareat.svg"
+          width={283}
+          height={144}
           alt="powered by skynet"
         />
       </div>

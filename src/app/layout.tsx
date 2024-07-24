@@ -24,7 +24,9 @@ export default async function RootLayout({
         <AuthProviderHoc>
           <div className="mainWrapper">
             {children}
-            <footer className="mainFooter">powered by Skynet</footer>
+            <footer className="mainFooter">
+              powered by Fustellificio Toscano
+            </footer>
           </div>
         </AuthProviderHoc>
       </body>

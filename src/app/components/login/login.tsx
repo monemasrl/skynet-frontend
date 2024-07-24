@@ -37,10 +37,10 @@ function Login() {
         transition={{ duration: 1 }}
       >
         <Image
-          src="/images/skynet.png"
+          src="/images/logoareat.svg"
           alt="logo"
-          width={297}
-          height={107}
+          width={283}
+          height={144}
           className={style.logo}
         />
       </motion.header>
