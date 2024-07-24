@@ -71,7 +71,7 @@ function ListaHeader({
         />
       </div>
       <div onClick={() => dataOrder("sede_operativa", orderBy, setOrderBy)}>
-        <span>Sede </span>
+        <span>Cliente </span>
         <FrecceListaOrdinamento
           direction={orderBy?.direction}
           by={orderBy?.orderBy}
