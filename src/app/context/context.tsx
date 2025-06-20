@@ -21,6 +21,7 @@ function ContextProvider({ children }: { children: React.ReactNode }): any {
   const [isCommessaSelectedByList, setIsCommessaSelectedByList] =
     useState<boolean>(false);
   const [refreshData, setRefreshData] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const auth = useAuth();
   useEffect(() => {
@@ -61,6 +62,8 @@ function ContextProvider({ children }: { children: React.ReactNode }): any {
     isArchived,
     apiClient,
     isCommessaSelectedByList,
+    isLoading,
+    setIsLoading,
     setIsCommessaSelectedByList,
     setRefreshData,
   };

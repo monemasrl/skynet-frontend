@@ -61,6 +61,7 @@ function MainListContainer({
 
   useEffect(() => {
     if (contextData?.apiClient) {
+      contextData.setIsLoading(true);
       contextData.apiClient.orders
         .listOrders({
           page: page - 1,
@@ -71,6 +72,7 @@ function MainListContainer({
           orderDirection: orderBy?.direction,
         })
         .then((data) => {
+          contextData?.setIsLoading(false);
           setOrders(data.orders);
           setAziende(ListaAziende(data.orders));
           setTotal(data.total);
@@ -122,6 +124,7 @@ function MainListContainer({
         setIsCommessaSelectedByList={contextData?.setIsCommessaSelectedByList}
         orderBy={orderBy}
         setOrderBy={setOrderBy}
+        isLoading={contextData?.isLoading}
       />
     </div>
   );

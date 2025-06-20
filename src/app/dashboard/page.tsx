@@ -32,8 +32,6 @@ function Home() {
   };
 
   useEffect(() => {
-    console.log(auth?.isAuthenticated, "auth?.isAuthenticated");
-
     const checkIfManager = (auth?.user?.profile?.groups as string[])?.includes(
       "manager"
     );
@@ -42,8 +40,6 @@ function Home() {
       setUserRole("manager");
     }
   }, [auth]);
-
-  console.log(userRole, "userRole");
 
   if (auth.isAuthenticated === false) {
     redirect("/");

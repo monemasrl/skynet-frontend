@@ -23,7 +23,15 @@ function Dettagli() {
       ? new DateObject(data.data_consegna_prevista)
       : null;
 
-  return contextData?.commessa ? (
+  if (contextData?.commessa === undefined && !contextData?.isLoading) {
+    return (
+      <div className={style.dettagli}>
+        Non ci sono dettagli da visualizzare.
+      </div>
+    );
+  }
+
+  return !contextData?.isLoading ? (
     <div className={style.dettagli} key={data?.codice}>
       <header>
         <div className={style.dettagli__boxtitle}>

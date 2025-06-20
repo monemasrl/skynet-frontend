@@ -48,6 +48,8 @@ type tContext = {
     isCommessaSelectedByList: boolean;
     setIsCommessaSelectedByList: Dispatch<SetStateAction<boolean>>;
     setRefreshData: Dispatch<SetStateAction<boolean>>;
+    isLoading: boolean;
+    setIsLoading: Dispatch<SetStateAction<boolean>>;
 };
 type typeOrderBy = {
     orderBy: string | null;

@@ -16,6 +16,7 @@ function Items({
   setIsCommessaSelectedByList,
   orderBy,
   setOrderBy,
+  isLoading,
 }: {
   currentItems: OrderType[] | null | undefined;
   currentListItem: OrderType | null | undefined;
@@ -29,10 +30,11 @@ function Items({
     | undefined;
   orderBy: typeOrderBy | null;
   setOrderBy: React.Dispatch<React.SetStateAction<typeOrderBy | null>>;
+  isLoading?: boolean;
 }) {
   return (
     <>
-      {currentItems ? (
+      {!isLoading ? (
         <ul>
           <ListaHeader orderBy={orderBy} setOrderBy={setOrderBy} />
           {currentItems?.map((item) => {
@@ -68,6 +70,7 @@ function PaginatedItems({
   setIsCommessaSelectedByList,
   orderBy,
   setOrderBy,
+  isLoading,
 }: {
   itemsPerPage: number;
   dati: OrderType[] | undefined;
@@ -84,6 +87,7 @@ function PaginatedItems({
     | undefined;
   orderBy: typeOrderBy | null;
   setOrderBy: React.Dispatch<React.SetStateAction<typeOrderBy | null>>;
+  isLoading?: boolean;
 }) {
   // Here we use item offsets; we could also use page offsets
   // following the API or data you're working with.
@@ -99,7 +103,12 @@ function PaginatedItems({
     setCurrentPage && setCurrentPage(event.selected + 1);
   };
 
-  return (
+  if (dati?.length === 0 && !isLoading) {
+    return (
+      <div style={{ marginTop: "2rem" }}>non ci sono dati da visualizzare</div>
+    );
+  }
+  return !isLoading ? (
     <>
       <Items
         currentItems={dati}
@@ -122,6 +131,8 @@ function PaginatedItems({
         className={"pagination"}
       />
     </>
+  ) : (
+    <Loading />
   );
 }
 export default PaginatedItems;

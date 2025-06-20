@@ -38,7 +38,6 @@ function Select({
           archived: contextData.isArchived,
         })
         .then((data) => {
-          console.log(data, "cercaAziende");
           const aziende = data.companies.map((item: Company) => item.name);
           setDati(aziende);
         });
@@ -52,10 +51,10 @@ function Select({
       setOpen(false);
       setCercaAziende("");
     }
-    console.log(filtro, "filtro");
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [filtro]);
-  console.log(filtro, "filtro");
+
   return (
     <div
       className={style.select}
